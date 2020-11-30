@@ -33,9 +33,7 @@ export default {
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: [
-    '@nuxtjs/dotenv'
-  ],
+  modules: [],
 
   // Content module configuration (https://go.nuxtjs.dev/config-content)
   content: {},

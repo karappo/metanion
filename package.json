@@ -11,10 +11,8 @@
     "lint": "yarn lint:js"
   },
   "dependencies": {
-    "@nuxtjs/dotenv": "^1.4.1",
     "core-js": "^3.6.5",
-    "nuxt": "^2.14.6",
-    "stein-js-client": "^0.0.2"
+    "nuxt": "^2.14.6"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.1.0",
