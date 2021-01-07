@@ -1,6 +1,5 @@
 <template lang="pug">
-  .container
-    | ほげ
+  .container {{ res }}
 </template>
 
 <script>
