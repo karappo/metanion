@@ -9,10 +9,24 @@ module.exports = {
   },
   extends: [
     '@nuxtjs',
+    'prettier',
+    'prettier/vue',
+    'plugin:prettier/recommended',
     'plugin:nuxt/recommended'
   ],
   plugins: [
   ],
   // add your custom rules here
-  rules: {}
+  rules: {
+    'prettier/prettier': ['error', {'trailingComma': 'none'}],
+    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-irregular-whitespace': 'off',
+    'vue/name-property-casing': ['error', 'kebab-case'],
+    'yoda': ['error', 'never', {'onlyEquality': true}],
+    'unicorn/number-literal-case': 'off'
+  },
+  globals: {
+    // 'Potree': true
+  }
 }
