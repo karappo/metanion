@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "prebuild": "rm -rf dist",
     "build": "nuxt build",
     "start": "nuxt",
+    "pregenerate": "rm -rf dist",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint": "yarn lint:js"
