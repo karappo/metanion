@@ -1,17 +1,32 @@
 <template lang="pug">
-ul
-  li(v-for="sheet in ss.sheets")
-    nuxt-link(:to="`?sheetId=${sheet.properties.sheetId}`") {{ sheet.properties.title }}
+div
+  ul
+    li(v-for="sheet in gss.sheets")
+      nuxt-link(:to="`?sheetId=${sheet.properties.sheetId}`") {{ sheet.properties.title }}
+  div(v-if="sheet") {{ sheet.data[0].rowData }}
 </template>
 
 <script>
+import _find from 'lodash/find'
+
 const SPREADSHEET_ID = '1lu3DbgrhnZYCKT7KuwaZB0Y9VnMH-Vwxf-y2BstPLOM'
 const API_KEY = 'AIzaSyDcC0YMmCcMid6GjWbfQYFm314mQZ9f-WY'
+
 export default {
+  watchQuery: ['sheetId'],
   async asyncData({ $axios }) {
     // eslint-disable-next-line
-    const ss = await $axios.$get(`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/?key=${API_KEY}&includeGridData=true`)
-    return { ss }
+    const gss = await $axios.$get(`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/?key=${API_KEY}&includeGridData=true`)
+    return { gss }
+  },
+  data() {
+    let sheet = null
+    if (this.gss && this.$route.query.sheetId) {
+      sheet = _find(this.gss.sheets, {
+        properties: { sheetId: this.$route.query.sheetId * 1 }
+      })
+    }
+    return { sheet }
   },
   head() {
     return {
