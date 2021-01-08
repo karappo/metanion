@@ -4,8 +4,8 @@ div
     li(v-for="sheet in gss.sheets")
       nuxt-link(:to="`?sheetId=${sheet.properties.sheetId}`") {{ sheet.properties.title }}
   table(v-if="sheet")
-    tr(v-for="row in sheet.data[0].rowData")
-      td(v-for="col in row.values")
+    tr(v-for="row in sheet")
+      td(v-for="(col, idx) in row.values" v-if="idx != 0")
         | {{ col.formattedValue }}
 </template>
 
@@ -27,7 +27,7 @@ export default {
     if (this.gss && this.$route.query.sheetId) {
       sheet = _find(this.gss.sheets, {
         properties: { sheetId: this.$route.query.sheetId * 1 }
-      })
+      }).data[0].rowData
     }
     return { sheet }
   },
