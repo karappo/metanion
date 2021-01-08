@@ -1,5 +1,7 @@
 <template lang="pug">
-  .container {{ res }}
+ul
+  li(v-for="sheet in ss.sheets")
+    nuxt-link(:to="`?sheetId=${sheet.properties.sheetId}`") {{ sheet.properties.title }}
 </template>
 
 <script>
@@ -8,11 +10,9 @@ export default {
   async asyncData({ $axios }) {
     const spreadsheetId = '1lu3DbgrhnZYCKT7KuwaZB0Y9VnMH-Vwxf-y2BstPLOM'
     const yourAPIKey = 'AIzaSyDcC0YMmCcMid6GjWbfQYFm314mQZ9f-WY'
-    console.log('---------------')
     // eslint-disable-next-line
-    const res = await $axios.$get(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/?key=${yourAPIKey}&includeGridData=true`)
-    console.log(res)
-    return { res }
+    const ss = await $axios.$get(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/?key=${yourAPIKey}&includeGridData=true`)
+    return { ss }
   },
   mounted() {
     console.log('mounted')
