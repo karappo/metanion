@@ -3,7 +3,10 @@ div
   ul
     li(v-for="sheet in gss.sheets")
       nuxt-link(:to="`?sheetId=${sheet.properties.sheetId}`") {{ sheet.properties.title }}
-  div(v-if="sheet") {{ sheet.data[0].rowData }}
+  table(v-if="sheet")
+    tr(v-for="row in sheet.data[0].rowData")
+      td(v-for="col in row.values")
+        | {{ col.formattedValue }}
 </template>
 
 <script>
@@ -50,4 +53,8 @@ export default {
   justify-content: center
   align-items: center
   text-align: center
+
+table
+  td
+    background-color: #eee
 </style>
