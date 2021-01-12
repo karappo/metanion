@@ -1,5 +1,5 @@
 <template lang="pug">
-table(v-if="sheet")
+table
   tr(v-for="row in sheet")
     td(v-for="(col, idx) in row.values" v-if="idx != 0")
       | {{ col.formattedValue }}
@@ -29,14 +29,6 @@ export default {
 </script>
 
 <style lang="sass">
-.container
-  margin: 0 auto
-  min-height: 100vh
-  display: flex
-  justify-content: center
-  align-items: center
-  text-align: center
-
 table
   td
     background-color: #eee

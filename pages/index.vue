@@ -1,8 +1,7 @@
 <template lang="pug">
-div
-  ul
-    li(v-for="sheet in gss.sheets")
-      nuxt-link(:to="`/${sheet.properties.sheetId}`") {{ sheet.properties.title }}
+.container
+  .sheets
+    nuxt-link.sheetLink(v-for="sheet in gss.sheets" :to="`/${sheet.properties.sheetId}/`") {{ sheet.properties.title }}
 </template>
 
 <script>
@@ -19,16 +18,26 @@ export default {
 }
 </script>
 
-<style lang="sass">
-.container
-  margin: 0 auto
-  min-height: 100vh
+<style lang="sass" scoped>
+@import ~assets/style/const
+.sheets
+  min-width: 400px
+.sheetLink
+  display: block
+  border: 1px solid #ccc
+  border-radius: 5px
+  margin: 5px
+  padding: 20px
   display: flex
-  justify-content: center
   align-items: center
-  text-align: center
-
-table
-  td
-    background-color: #eee
+  &:after
+    content: '▶'
+    color: #ccc
+    margin-left: auto
+    margin-right: 0
+  &:hover
+    border-color: $color_main
+    color: $color_main
+    &:after
+      color: $color_main
 </style>
