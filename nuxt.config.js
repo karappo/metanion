@@ -1,5 +1,4 @@
 require('dotenv').config()
-const env = process.env
 export default {
 
   ssr: false,
@@ -59,7 +58,7 @@ export default {
   dotenv: {
     path: process.cwd()
   },
-  env,
+  env: process.env,
 
   // Content module configuration (https://go.nuxtjs.dev/config-content)
   content: {},
