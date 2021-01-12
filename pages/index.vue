@@ -1,5 +1,6 @@
 <template lang="pug">
 .container
+  h3 ビジュアライズしたいアンケートを選択
   .sheets
     nuxt-link.sheetLink(v-for="(sheet, idx) in gss.sheets" :to="`/${sheet.properties.sheetId}/`" :key="idx") {{ sheet.properties.title }}
 </template>
@@ -17,11 +18,15 @@ export default {
 
 <style lang="sass" scoped>
 @import ~assets/style/const
+h3
+  font-size: 20px
+  text-align: center
 .sheets
   min-width: 400px
 .sheetLink
   display: block
-  border: 1px solid #ccc
+  border: 3px solid #ccc
+  color: #ccc
   border-radius: 5px
   margin: 5px
   padding: 20px

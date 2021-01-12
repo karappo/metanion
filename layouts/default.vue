@@ -3,7 +3,7 @@
   header
     h1
       nuxt-link(to='/') metanion β
-    nuxt-link.helpLink(to='/help/') Help ？
+    nuxt-link.helpLink(to='/help/') 使い方
   main
     Nuxt/
 </template>
@@ -13,12 +13,18 @@
 .root
   min-height: 100vh
 header
+  position: sticky
+  top: 0
   height: $header_height
   background-color: $color_main
   display: flex
   align-items: center
   color: white
+  a[href]
+    display: inline
+    border-bottom: 0
   h1
+    font-size: 24px
     margin-left: 15px
     margin-right: auto
   .helpLink

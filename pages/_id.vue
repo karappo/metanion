@@ -7,6 +7,8 @@ table
 
 <script>
 import _find from 'lodash/find'
+import _take from 'lodash/take'
+import _tail from 'lodash/tail'
 export default {
   async asyncData({ $axios, params, redirect }) {
     try {
@@ -15,7 +17,32 @@ export default {
       const sheet = _find(gss.sheets, {
         properties: { sheetId: params.id * 1 }
       }).data[0].rowData
-      return { sheet }
+      // ----------------
+      // データの整形
+      const head = _take(sheet)[0].values.map((el) => {
+        return el.formattedValue
+      })
+      const body = _tail(sheet)
+      const answers = body.map((row) => {
+        const obj = {
+          before: {},
+          after: {}
+        }
+        row.values.forEach((el, idx) => {
+          const key = head[idx]
+          const val = el.formattedValue
+          const _key = key.match(/\[(.+)\]/)
+          if (/前/.test(key)) {
+            obj.before[_key[1]] = parseInt(val, 10)
+          } else if (/後/.test(key)) {
+            obj.after[_key[1]] = parseInt(val, 10)
+          }
+          // TODO ここで各値の個数のバリデーションできるかも
+        })
+        return obj
+      })
+      console.log(answers)
+      return { sheet, answers }
     } catch (e) {
       console.error(e)
       // TODO エラー表示
