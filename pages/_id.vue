@@ -7,15 +7,11 @@ table
 
 <script>
 import _find from 'lodash/find'
-
-const SPREADSHEET_ID = '1lu3DbgrhnZYCKT7KuwaZB0Y9VnMH-Vwxf-y2BstPLOM'
-const API_KEY = 'AIzaSyDcC0YMmCcMid6GjWbfQYFm314mQZ9f-WY'
-
 export default {
   async asyncData({ $axios, params, redirect }) {
     try {
       // eslint-disable-next-line
-      const gss = await $axios.$get(`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/?key=${API_KEY}&includeGridData=true`)
+      const gss = await $axios.$get(`https://sheets.googleapis.com/v4/spreadsheets/${process.env.SPREADSHEET_ID}/?key=${process.env.API_KEY}&includeGridData=true`)
       const sheet = _find(gss.sheets, {
         properties: { sheetId: params.id * 1 }
       }).data[0].rowData

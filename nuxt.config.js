@@ -1,3 +1,5 @@
+require('dotenv').config()
+const { SPREADSHEET_ID, API_KEY } = process.env
 export default {
 
   ssr: false,
@@ -44,11 +46,23 @@ export default {
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     // https://go.nuxtjs.dev/eslint
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/dotenv'
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: ['@nuxtjs/axios'],
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/dotenv'
+  ],
+
+  dotenv: {
+    path: process.cwd()
+  },
+  env: {
+    SPREADSHEET_ID,
+    API_KEY
+  },
 
   // Content module configuration (https://go.nuxtjs.dev/config-content)
   content: {},
