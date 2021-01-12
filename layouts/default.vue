@@ -4,7 +4,7 @@
     h1
       nuxt-link(to='/') metanion β
     nuxt-link.helpLink(to='/help/') Help ？
-  .content
+  main
     Nuxt/
 </template>
 
@@ -25,7 +25,7 @@ header
     margin-left: auto
     margin-right: 15px
     font-size: 12px
-.content
+main
   min-height: calc(100vh - #{$header_height})
   display: flex
   justify-content: center
