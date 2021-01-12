@@ -18,7 +18,8 @@ export default {
       return { sheet }
     } catch (e) {
       console.error(e)
-      // redirect('/')
+      // TODO エラー表示
+      redirect('/')
     }
   }
 }
