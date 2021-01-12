@@ -1,5 +1,5 @@
 require('dotenv').config()
-const { SPREADSHEET_ID, API_KEY } = process.env
+const env = process.env
 export default {
 
   ssr: false,
@@ -59,10 +59,7 @@ export default {
   dotenv: {
     path: process.cwd()
   },
-  env: {
-    SPREADSHEET_ID,
-    API_KEY
-  },
+  env,
 
   // Content module configuration (https://go.nuxtjs.dev/config-content)
   content: {},
