@@ -13,16 +13,16 @@ const API_KEY = 'AIzaSyDcC0YMmCcMid6GjWbfQYFm314mQZ9f-WY'
 
 export default {
   async asyncData({ $axios, params, redirect }) {
-    // eslint-disable-next-line
-    const gss = await $axios.$get(`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/?key=${API_KEY}&includeGridData=true`)
-    if (gss) {
+    try {
+      // eslint-disable-next-line
+      const gss = await $axios.$get(`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/?key=${API_KEY}&includeGridData=true`)
       const sheet = _find(gss.sheets, {
         properties: { sheetId: params.id * 1 }
       }).data[0].rowData
-
       return { sheet }
-    } else {
-      redirect('/')
+    } catch (e) {
+      console.error(e)
+      // redirect('/')
     }
   }
 }
