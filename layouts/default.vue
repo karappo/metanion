@@ -2,7 +2,7 @@
 .root
   header
     h1
-      nuxt-link(to='/') metanion β
+      nuxt-link(to='/') Taiwa β
     nuxt-link.helpLink(to='/help/') 使い方
   main
     Nuxt/
