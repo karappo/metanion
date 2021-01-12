@@ -1,7 +1,7 @@
 <template lang="pug">
 table
   tr(v-for="row in sheet")
-    td(v-for="(col, idx) in row.values" v-if="idx != 0")
+    td(v-for="(col, idx) in row.values" :key="idx" v-if="idx != 0")
       | {{ col.formattedValue }}
 </template>
 

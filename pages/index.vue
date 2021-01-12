@@ -1,7 +1,7 @@
 <template lang="pug">
 .container
   .sheets
-    nuxt-link.sheetLink(v-for="sheet in gss.sheets" :to="`/${sheet.properties.sheetId}/`") {{ sheet.properties.title }}
+    nuxt-link.sheetLink(v-for="(sheet, idx) in gss.sheets" :to="`/${sheet.properties.sheetId}/`" :key="idx") {{ sheet.properties.title }}
 </template>
 
 <script>
