@@ -24,17 +24,6 @@ export default {
     } else {
       redirect('/')
     }
-  },
-  head() {
-    return {
-      script: [
-        {
-          src: 'https://apis.google.com/js/api.js',
-          async: true,
-          defer: true
-        }
-      ]
-    }
   }
 }
 </script>

@@ -15,17 +15,6 @@ export default {
     // eslint-disable-next-line
     const gss = await $axios.$get(`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/?key=${API_KEY}&includeGridData=true`)
     return { gss }
-  },
-  head() {
-    return {
-      script: [
-        {
-          src: 'https://apis.google.com/js/api.js',
-          async: true,
-          defer: true
-        }
-      ]
-    }
   }
 }
 </script>
