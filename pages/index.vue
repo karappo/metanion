@@ -1,20 +1,9 @@
 <template lang="pug">
 .container
   h3 ビジュアライズしたいアンケートを選択
-  .sheets
-    nuxt-link.sheetLink(v-for="(sheet, idx) in gss.sheets" :to="`/${sheet.properties.sheetId}/`" :key="idx") {{ sheet.properties.title }}
+  .sheets(v-if="this.$store.state.gss")
+    nuxt-link.sheetLink(v-for="(sheet, idx) in this.$store.state.gss.sheets" :to="`/${sheet.properties.sheetId}/`" :key="idx") {{ sheet.properties.title }}
 </template>
-
-<script>
-export default {
-  watchQuery: ['sheetId'],
-  async asyncData({ $axios }) {
-    // eslint-disable-next-line
-    const gss = await $axios.$get(`https://sheets.googleapis.com/v4/spreadsheets/${process.env.SPREADSHEET_ID}/?key=${process.env.API_KEY}&includeGridData=true`)
-    return { gss }
-  }
-}
-</script>
 
 <style lang="sass" scoped>
 @import ~assets/style/const
