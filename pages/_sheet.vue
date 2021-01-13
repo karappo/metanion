@@ -1,21 +1,23 @@
 <template lang="pug">
-table
-  tr(v-for="row in sheet")
-    td(v-for="(col, idx) in row.values" :key="idx" v-if="idx != 0")
-      | {{ col.formattedValue }}
+.index
+  nuxt-child
+  .sentences
+    nuxt-link(v-for="(v, k) in answersBySentence"  :key="k" :to="`/${sheetId}/${k}/`") {{ k }}
 </template>
 
 <script>
 import _find from 'lodash/find'
+import _keys from 'lodash/keys'
 import _take from 'lodash/take'
 import _tail from 'lodash/tail'
 export default {
   async asyncData({ $axios, params, redirect }) {
     try {
+      const sheetId = params.sheet * 1
       // eslint-disable-next-line
       const gss = await $axios.$get(`https://sheets.googleapis.com/v4/spreadsheets/${process.env.SPREADSHEET_ID}/?key=${process.env.API_KEY}&includeGridData=true`)
       const sheet = _find(gss.sheets, {
-        properties: { sheetId: params.id * 1 }
+        properties: { sheetId }
       }).data[0].rowData
       // ----------------
       // データの整形
@@ -23,6 +25,7 @@ export default {
         return el.formattedValue
       })
       const body = _tail(sheet)
+      // そのままの構造で素直にデータ化
       const answers = body.map((row) => {
         const obj = {
           before: {},
@@ -41,8 +44,21 @@ export default {
         })
         return obj
       })
-      console.log(answers)
-      return { sheet, answers }
+      // 文章ごとにグループ化したデータ
+      const answersBySentence = {}
+      _keys(answers[0].before).forEach((sentenceKey) => {
+        const before = answers.map((a) => {
+          return a.before[sentenceKey]
+        })
+        const after = answers.map((a) => {
+          return a.after[sentenceKey]
+        })
+        answersBySentence[sentenceKey] = {
+          before,
+          after
+        }
+      })
+      return { sheetId, sheet, answers, answersBySentence }
     } catch (e) {
       console.error(e)
       // TODO エラー表示
@@ -53,7 +69,17 @@ export default {
 </script>
 
 <style lang="sass">
-table
-  td
-    background-color: #eee
+.index
+  width: 100%
+  min-height: calc(100vh - 60px)
+  display: flex
+  justify-content: center
+  align-items: center
+  position: relative
+.sentences
+  text-align: center
+  position: absolute
+  bottom: 30px
+  a + a
+    margin-left: 15px
 </style>
