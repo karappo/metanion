@@ -1,45 +1,59 @@
 <template lang="pug">
 div
   h2 {{ this.$route.params.sentence }}の回答の変化
-  div.answers(v-if="answers")
-    .before
-      table
-        tr(v-for="a in answers.before")
-          td
-            | {{ a }}
-    .arrow →
-    .after
-      table
-        tr(v-for="a in answers.after")
-          td
-            | {{ a }}
+  table.answers(v-if="answers")
+    thead
+      tr
+        th Before
+        th
+        th after
+    tbody
+      tr(v-for="hyouka in ['2', '1', '0', '-1', '-2']")
+        td {{ answers.before[hyouka] || 0 }}
+        td →
+        td {{ answers.after[hyouka] || 0 }}
 </template>
 
 <style lang="sass">
 h2
   text-align: center
-.answers
-  display: flex
-  flex-direction: row
-  align-items: center
-  .after
-    margin-left: 10px
-  .arrow
-    padding: 0 20px
-  table
-    width: 100px
-    td
-      background-color: #ccc
-      text-align: center
+table.answers
+  width: 100%
+  td
+    background-color: #ccc
+    text-align: center
+    width: 50%
+    &:nth-child(2)
+      width: 10px
+      background-color: white
 </style>
 
 <script>
 export default {
   computed: {
     answers() {
-      return this.$store.state.answersBySentence
-        ? this.$store.state.answersBySentence[this.$route.params.sentence]
-        : null
+      if (!this.$store.state.answersBySentence) {
+        return null
+      }
+      // 答えの値ごとにカウントする
+      const toCountDict = function (array) {
+        if (!Array.isArray(array)) {
+          array = Object.values(array)
+        }
+        const dict = {}
+        for (const key of array) {
+          dict[key] = array.filter((x) => {
+            return x === key
+          }).length
+        }
+        return dict
+      }
+      // eslint-disable-next-line
+      const answers = this.$store.state.answersBySentence[this.$route.params.sentence]
+      answers.before = toCountDict(answers.before)
+      answers.after = toCountDict(answers.after)
+      console.log(answers)
+      return answers
     }
   }
 }
