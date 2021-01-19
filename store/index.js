@@ -71,7 +71,6 @@ export const mutations = {
     state.sheet = sheet
     state.answers = answers
     state.answersBySentence = answersBySentence
-    console.log('update', state.sheet)
   },
   sheet(state, val) {
     state.sheet = val
