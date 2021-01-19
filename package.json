@@ -12,6 +12,7 @@
     "lint": "yarn lint:js"
   },
   "dependencies": {
+    "@karappo-inc/vue-components": "^0.3.1",
     "@nuxtjs/axios": "^5.12.5",
     "core-js": "^3.6.5",
     "lodash": "^4.17.20",

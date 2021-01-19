@@ -3,6 +3,9 @@
   h3 ビジュアライズしたいアンケートを選択
   .sheets(v-if="this.$store.state.gss")
     nuxt-link.sheetLink(v-for="(sheet, idx) in this.$store.state.gss.sheets" :to="`/${sheet.properties.sheetId}/`" :key="idx") {{ sheet.properties.title }}
+  ExternalLink.gssLink(href='https://docs.google.com/spreadsheets/d/1lu3DbgrhnZYCKT7KuwaZB0Y9VnMH-Vwxf-y2BstPLOM/edit#gid=1990567556' targe='_blank')
+    img.icon(src='~assets/image/google-sheets.svg')
+    | 回答結果
 </template>
 
 <style lang="sass" scoped>
@@ -31,4 +34,25 @@ h3
     color: $color_main
     &:after
       color: $color_main
+.gssLink
+  position: absolute
+  bottom: 20px
+  right: 20px
+  display: flex
+  flex-direction: column
+  align-items: center
+  font-size: 13px
+  border-bottom: 0
+  .icon
+    width: 80px
+    height: auto
 </style>
+
+<script>
+import { ExternalLink } from '@karappo-inc/vue-components'
+export default {
+  components: {
+    ExternalLink
+  }
+}
+</script>
