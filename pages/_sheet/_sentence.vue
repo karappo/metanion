@@ -1,19 +1,23 @@
 <template lang="pug">
-div.answers(v-if="answers")
-  .before
-    table
-      tr(v-for="a in answers.before")
-        td
-          | {{ a }}
-  .arrow →
-  .after
-    table
-      tr(v-for="a in answers.after")
-        td
-          | {{ a }}
+div
+  h2 {{ this.$route.params.sentence }}の回答の変化
+  div.answers(v-if="answers")
+    .before
+      table
+        tr(v-for="a in answers.before")
+          td
+            | {{ a }}
+    .arrow →
+    .after
+      table
+        tr(v-for="a in answers.after")
+          td
+            | {{ a }}
 </template>
 
 <style lang="sass">
+h2
+  text-align: center
 .answers
   display: flex
   flex-direction: row
