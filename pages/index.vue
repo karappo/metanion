@@ -5,7 +5,6 @@
     nuxt-link.sheetLink(v-for="(sheet, idx) in this.$store.state.gss.sheets" :to="`/${sheet.properties.sheetId}/`" :key="idx") {{ sheet.properties.title }}
   ExternalLink.gssLink(href='https://docs.google.com/spreadsheets/d/1lu3DbgrhnZYCKT7KuwaZB0Y9VnMH-Vwxf-y2BstPLOM/edit#gid=1990567556' targe='_blank')
     img.icon(src='~assets/image/google-sheets.svg')
-    | 回答結果
 </template>
 
 <style lang="sass" scoped>
