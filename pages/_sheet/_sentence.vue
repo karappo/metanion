@@ -5,13 +5,21 @@ div
     thead
       tr
         th Before
-        th
-        th after
+        th →
+        th After
     tbody
+      tr
+        td
+        td 賛成
+        td
       tr(v-for="hyouka in ['2', '1', '0', '-1', '-2']")
-        td {{ answers.before[hyouka] || 0 }}
-        td →
-        td {{ answers.after[hyouka] || 0 }}
+        td.gray {{ answers.before[hyouka] || 0 }}
+        td {{ hyouka }}
+        td.gray {{ answers.after[hyouka] || 0 }}
+      tr
+        td
+        td 反対
+        td
 </template>
 
 <style lang="sass">
@@ -20,11 +28,17 @@ h2
 table.answers
   width: 100%
   td
-    background-color: #ccc
     text-align: center
-    width: 50%
+    width: 35%
+    &
+      background-color: #eee
     &:nth-child(2)
-      width: 10px
+      width: 30%
+      background-color: white
+      font-weight: bold
+  tr:last-child,
+  tr:first-child
+    td
       background-color: white
 </style>
 
@@ -52,7 +66,6 @@ export default {
       const answers = this.$store.state.answersBySentence[this.$route.params.sentence]
       answers.before = toCountDict(answers.before)
       answers.after = toCountDict(answers.after)
-      console.log(answers)
       return answers
     }
   }
