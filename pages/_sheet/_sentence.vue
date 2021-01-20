@@ -1,7 +1,7 @@
 <template lang="pug">
 div
   h2 {{ this.$route.params.sentence }}の回答の変化
-  table.answers(v-if="answers")
+  table.answers(v-if="answers()")
     thead
       tr
         th Before
@@ -13,9 +13,9 @@ div
         td 賛成
         td
       tr(v-for="hyouka in ['2', '1', '0', '-1', '-2']")
-        td.gray {{ answers.before[hyouka] || 0 }}
-        td {{ hyouka }}
-        td.gray {{ answers.after[hyouka] || 0 }}
+        td.gray {{ answers().before[hyouka] || 0 }}
+        td {{ 0 < hyouka ? `+${hyouka}` : hyouka }}
+        td.gray {{ answers().after[hyouka] || 0 }}
       tr
         td
         td 反対
@@ -44,29 +44,14 @@ table.answers
 
 <script>
 export default {
-  computed: {
+  mounted() {
+    this.$store.commit('sheetId', this.$route.params.sheet)
+  },
+  methods: {
     answers() {
-      if (!this.$store.state.answersBySentence) {
-        return null
-      }
-      // 答えの値ごとにカウントする
-      const toCountDict = function (array) {
-        if (!Array.isArray(array)) {
-          array = Object.values(array)
-        }
-        const dict = {}
-        for (const key of array) {
-          dict[key] = array.filter((x) => {
-            return x === key
-          }).length
-        }
-        return dict
-      }
-      // eslint-disable-next-line
-      const answers = this.$store.state.answersBySentence[this.$route.params.sentence]
-      answers.before = toCountDict(answers.before)
-      answers.after = toCountDict(answers.after)
-      return answers
+      return this.$store.state.answersBySentence
+        ? this.$store.state.answersBySentence[this.$route.params.sentence]
+        : null
     }
   }
 }

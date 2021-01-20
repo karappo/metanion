@@ -18,6 +18,7 @@ export const mutations = {
   sheetId(state, val) {
     state.sheetId = val
 
+    // TODO 必ずgssがあるようにしたい
     if (state.gss == null) {
       return
     }
@@ -33,25 +34,26 @@ export const mutations = {
       return el.formattedValue
     })
     const body = _tail(sheet)
-    // そのままの構造で素直にデータ化
-    const answers = body.map((row) => {
-      const obj = {
-        before: {},
-        after: {}
-      }
-      row.values.forEach((el, idx) => {
-        const key = head[idx]
-        const val = el.formattedValue
-        const _key = key.match(/\[(.+)\]/)
-        if (/前/.test(key)) {
-          obj.before[_key[1]] = parseInt(val, 10)
-        } else if (/後/.test(key)) {
-          obj.after[_key[1]] = parseInt(val, 10)
+    const answers = body
+      .filter((row) => row.values !== undefined) // rowがundefinedのものが交じる場合があるので削除 TODO もっと早い段階（sheetsとか？）で行ったほうがよい？
+      .map((row) => {
+        const obj = {
+          before: {},
+          after: {}
         }
-        // TODO ここで各値の個数のバリデーションできるかも
+        row.values.forEach((el, idx) => {
+          const key = head[idx]
+          const val = el.formattedValue
+          const _key = key.match(/\[(.+)\]/)
+          if (/前/.test(key)) {
+            obj.before[_key[1]] = parseInt(val, 10)
+          } else if (/後/.test(key)) {
+            obj.after[_key[1]] = parseInt(val, 10)
+          }
+          // TODO ここで各値の個数のバリデーションできるかも
+        })
+        return obj
       })
-      return obj
-    })
     // 文章ごとにグループ化したデータ
     const answersBySentence = {}
     _keys(answers[0].before).forEach((sentenceKey) => {
@@ -66,11 +68,32 @@ export const mutations = {
         after
       }
     })
+    // 答えの値ごとにカウントする
+    const toCountDict = function (obj) {
+      // arrayに変換
+      const array = (!Array.isArray(obj)
+        ? Object.values(obj)
+        : obj
+      ).filter((x) => Number.isInteger(x))
+      const dict = {}
+      for (const key of array) {
+        dict[String(key)] = array.filter((x) => {
+          return x === key
+        }).length
+      }
+      return dict
+    }
+    for (const property in answersBySentence) {
+      const answers = answersBySentence[property]
+      answers.before = toCountDict(answers.before)
+      answers.after = toCountDict(answers.after)
+    }
 
     // Update
     state.sheet = sheet
     state.answers = answers
     state.answersBySentence = answersBySentence
+    console.log('answersBySentence', answersBySentence)
   },
   sheet(state, val) {
     state.sheet = val
