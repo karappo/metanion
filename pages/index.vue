@@ -2,7 +2,7 @@
 .container
   h3 ビジュアライズしたいアンケートを選択
   .sheets(v-if="this.$store.state.gss")
-    nuxt-link.sheetLink(v-for="(sheet, idx) in this.$store.state.gss.sheets" :to="`/${sheet.properties.sheetId}/`" :key="idx") {{ sheet.properties.title }}
+    nuxt-link.sheetLink(v-for="(sheet, idx) in this.$store.state.gss.sheets" v-if="!/^_/.test(sheet.properties.title)" :to="`/${sheet.properties.sheetId}/`" :key="idx") {{ sheet.properties.title }}
   ExternalLink.gssLink(href='https://docs.google.com/spreadsheets/d/1lu3DbgrhnZYCKT7KuwaZB0Y9VnMH-Vwxf-y2BstPLOM/edit#gid=1990567556' targe='_blank')
     img.icon(src='~assets/image/google-sheets.svg')
 </template>

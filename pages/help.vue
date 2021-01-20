@@ -10,7 +10,13 @@
       | 「回答」タブより「回答先の選択」から「既存のスプレッドシートを選択」より、
       nuxt-link(to='https://docs.google.com/spreadsheets/d/1lu3DbgrhnZYCKT7KuwaZB0Y9VnMH-Vwxf-y2BstPLOM/edit') Metanion Answers
       | を選択
-    li 紐付けられたシートにわかりやすい名前をつける（日付など見分けをつけやすいように）
+      ul
+        li もし、選択肢の中に見つからない場合は権限があることを確認してください
+    li
+      | 紐付けられたシートにわかりやすい名前をつける
+      ul
+        li 日付などをつけて見分けをつけやすいようにすること
+        li 先頭を"_"（アンダーバー）にすると一覧に表示されなくなります
   h2 対話をしてもらい、前後で回答をまとめる
   ol
     li 対話前、9つの文書を読み、回答をしてもらう
@@ -40,4 +46,7 @@ h2:not(:first-child)
 ol
   li + li
     margin-top: 1.5em
+  ul
+    li + li
+      margin-top: 0
 </style>
