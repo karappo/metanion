@@ -91,14 +91,10 @@ export const mutations = {
 
     // Update
     state.sheet = sheet
-    state.answers = answers
     state.answersBySentence = answersBySentence
   },
   sheet(state, val) {
     state.sheet = val
-  },
-  answers(state, val) {
-    state.answers = val
   },
   answersBySentence(state, val) {
     state.answersBySentence = val
