@@ -16,6 +16,7 @@ export default {
       `https://sheets.googleapis.com/v4/spreadsheets/${process.env.SPREADSHEET_ID}/?key=${process.env.API_KEY}&includeGridData=true`
     ).then((res) => res.json())
     this.$store.commit('gss', gss)
+    // TODOここも整理（直接処理にできないか？）
     // もし、下層ページでsheetIdが指定されていたら、もう一度登録してスキップされた処理を行う
     if (this.$store.state.sheetId != null) {
       this.$store.commit('sheetId', this.$store.state.sheetId)
