@@ -37,6 +37,7 @@ export default {
 
   router: {
     trailingSlash: true,
+    middleware: ['sheet-redirect']
   },
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
