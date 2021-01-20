@@ -26,7 +26,7 @@
       v-for="(v, k) in $store.state.answersBySentence"
       :key="k"
       :to="`/${$store.state.sheetId}/${k}/`"
-      :class="{current: $route.fullPath === `/${$store.state.sheetId}/${k}/`}"
+      :class="{current: decodeURI($route.fullPath) === `/${$route.params.sheet}/${k}/`}"
     ) {{ k }}
 </template>
 
