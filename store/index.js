@@ -84,9 +84,9 @@ export const mutations = {
       return dict
     }
     for (const property in answersBySentence) {
-      const answers = answersBySentence[property]
-      answers.before = toCountDict(answers.before)
-      answers.after = toCountDict(answers.after)
+      const _answers = answersBySentence[property]
+      _answers.before = toCountDict(_answers.before)
+      _answers.after = toCountDict(_answers.after)
     }
 
     // Update
