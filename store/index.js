@@ -10,6 +10,7 @@ export const state = () => ({
   answers: null
 })
 
+// 文章ごとにグループ化
 const groupBySentence = (data) => {
   const res = {}
   _keys(data[0].before).forEach((sentenceKey) => {
@@ -26,6 +27,20 @@ const groupBySentence = (data) => {
   })
   return res
 }
+// 答えの値ごとにカウント
+const toCountDict = function (obj) {
+  // arrayに変換
+  let array = !Array.isArray(obj) ? Object.values(obj) : obj
+  array = array.filter((x) => Number.isInteger(x))
+  const dict = {}
+  for (const key of array) {
+    dict[String(key)] = array.filter((x) => {
+      return x === key
+    }).length
+  }
+  return dict
+}
+
 export const mutations = {
   gss(state, val) {
     state.gss = val
@@ -69,30 +84,16 @@ export const mutations = {
         })
         return obj
       })
-    // 文章ごとにグループ化したデータ
+
     answers = groupBySentence(answers)
 
-    // 答えの値ごとにカウントする
-    const toCountDict = function (obj) {
-      // arrayに変換
-      const array = (!Array.isArray(obj)
-        ? Object.values(obj)
-        : obj
-      ).filter((x) => Number.isInteger(x))
-      const dict = {}
-      for (const key of array) {
-        dict[String(key)] = array.filter((x) => {
-          return x === key
-        }).length
-      }
-      return dict
-    }
+    console.log(answers)
     for (const property in answers) {
       const _answers = answers[property]
       _answers.before = toCountDict(_answers.before)
       _answers.after = toCountDict(_answers.after)
     }
-
+    console.log(answers)
     // Update
     state.sheet = sheet
     state.answers = answers
