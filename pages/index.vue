@@ -1,6 +1,6 @@
 <template lang="pug">
 .container
-  h3 ビジュアライズしたい結果のシートを選択
+  h3 ビジュアライズしたいシートを選択
   .sheets(v-if="$store.state.gss")
     nuxt-link.sheetLink(v-for="(sheet, idx) in $store.state.gss.sheets" v-if="!/^_/.test(sheet.properties.title)" :to="`/${sheet.properties.sheetId}/`" :key="idx") {{ sheet.properties.title }}
 </template>
