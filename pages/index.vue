@@ -13,21 +13,21 @@ h3
 .sheets
   min-width: 400px
 .sheetLink
+  background: white
   display: block
-  border: 3px solid #ccc
   color: #ccc
   border-radius: 5px
   margin: 5px
   padding: 20px
   display: flex
   align-items: center
+  border: 0
   &:after
     content: '▶'
     color: #ccc
     margin-left: auto
     margin-right: 0
   &:hover
-    border-color: $color_main
     color: $color_main
     &:after
       color: $color_main

@@ -36,6 +36,7 @@ main
   display: flex
   justify-content: center
   align-items: center
+  background: #eee
 h1
   font-size: 30px
 </style>

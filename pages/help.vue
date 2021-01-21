@@ -34,6 +34,9 @@
 @import ~assets/style/const
 .container
   width: 600px
+  padding: 40px
+  background-color: white
+  margin: 80px 40px
   display: flex
   flex-direction: column
 h1

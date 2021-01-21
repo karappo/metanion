@@ -47,6 +47,7 @@
   display: flex
   justify-content: center
   align-items: center
+  background: white
 .gssLink
   position: absolute
   bottom: 0
