@@ -3,6 +3,7 @@
   ExternalLink.gssLink(:href="gssLinkURI()" targe='_blank')
     img.icon(src='~assets/image/google-sheets.svg')
   .wrap
+    h1(v-if="sheet()") {{ sheet().properties.title }}
     h2 {{ $route.params.sentence }}の回答の変化
     .graph(v-if="answers()")
       .row(v-for="point in ['2', '1', '0', '-1', '-2']")
@@ -49,6 +50,7 @@
 .table
   width: 400px
   margin: 0 auto 30px
+h1,
 h2
   text-align: center
 .graph
@@ -105,6 +107,7 @@ h2
 </style>
 
 <script>
+import _find from 'lodash/find'
 import { ExternalLink } from '@karappo-inc/vue-components'
 export default {
   components: {
@@ -114,6 +117,13 @@ export default {
     this.$store.commit('sheetId', this.$route.params.sheet)
   },
   methods: {
+    sheet() {
+      return this.$store.state.gss
+        ? _find(this.$store.state.gss.sheets, {
+            properties: { sheetId: this.$store.state.sheetId * 1 }
+          })
+        : null
+    },
     answers() {
       return this.$store.state.answersBySentence
         ? this.$store.state.answersBySentence[this.$route.params.sentence]
