@@ -100,9 +100,3 @@ export const mutations = {
     state.answersBySentence = val
   }
 }
-
-// export const getters = {
-//   answersBySentence(state) {
-//     return state.answersBySentence
-//   }
-// }
