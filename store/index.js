@@ -7,7 +7,6 @@ export const state = () => ({
   gss: null,
   sheetId: null,
   sheet: null,
-  answers: null,
   answersBySentence: null
 })
 
@@ -23,7 +22,7 @@ export const mutations = {
       return
     }
 
-    // sheetIdが更新されたら、answersやanswersBySentenceも更新する
+    // sheetIdが更新されたら、answersBySentenceも更新する
     const sheets = JSON.parse(JSON.stringify(state.gss.sheets))
     const sheet = _find(sheets, {
       properties: { sheetId: val * 1 }
