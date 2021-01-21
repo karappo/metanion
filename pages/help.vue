@@ -5,7 +5,9 @@
   ol
     li
       ExternalLink(href='https://docs.google.com/forms/') Google Forms
-      | より、新しいフォームを作成
+      | より、新しいフォームを作成。もしくは、
+      ExternalLink(href='https://docs.google.com/forms/d/1KABWGTNns3mlJ9iijs-QC2Kvpx6HMGZ1IhyIcerSw9Y/edit') こちらのフォーム
+      | を複製
     li
       | 「回答」タブより「回答先の選択」から「既存のスプレッドシートを選択」より、
       ExternalLink(:href="$const.spreadsheetURI") Metanion Answers
