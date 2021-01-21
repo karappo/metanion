@@ -1,7 +1,9 @@
 <template lang="pug">
 .content
+  ExternalLink.gssLink(:href="sheetURI()" targe='_blank')
+    img.icon(src='~assets/image/google-sheets.svg')
   .wrap
-    h2 {{ this.$route.params.sentence }}の回答の変化
+    h2 {{ $route.params.sentence }}の回答の変化
     .graph(v-if="answers()")
       .row(v-for="point in ['2', '1', '0', '-1', '-2']")
         .before
@@ -26,6 +28,21 @@
   display: flex
   justify-content: center
   align-items: center
+.gssLink
+  position: absolute
+  bottom: 0
+  right: 0
+  display: flex
+  flex-direction: column
+  align-items: center
+  font-size: 13px
+  border-bottom: 0
+  padding: 30px
+  border-bottom: 0 !important
+  z-index: 2
+  .icon
+    width: 40px
+    height: auto
 .wrap
   width: 100%
   height: 100%
@@ -88,7 +105,11 @@ h2
 </style>
 
 <script>
+import { ExternalLink } from '@karappo-inc/vue-components'
 export default {
+  components: {
+    ExternalLink
+  },
   mounted() {
     this.$store.commit('sheetId', this.$route.params.sheet)
   },
@@ -97,6 +118,9 @@ export default {
       return this.$store.state.answersBySentence
         ? this.$store.state.answersBySentence[this.$route.params.sentence]
         : null
+    },
+    sheetURI() {
+      return `https://docs.google.com/spreadsheets/d/1lu3DbgrhnZYCKT7KuwaZB0Y9VnMH-Vwxf-y2BstPLOM/edit#gid=${this.$store.state.sheetId}`
     }
   }
 }
