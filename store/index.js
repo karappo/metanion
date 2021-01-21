@@ -7,9 +7,25 @@ export const state = () => ({
   gss: null,
   sheetId: null,
   sheet: null,
-  answersBySentence: null
+  answers: null
 })
 
+const groupBySentence = (data) => {
+  const res = {}
+  _keys(data[0].before).forEach((sentenceKey) => {
+    const before = data.map((a) => {
+      return a.before[sentenceKey]
+    })
+    const after = data.map((a) => {
+      return a.after[sentenceKey]
+    })
+    res[sentenceKey] = {
+      before,
+      after
+    }
+  })
+  return res
+}
 export const mutations = {
   gss(state, val) {
     state.gss = val
@@ -22,7 +38,7 @@ export const mutations = {
       return
     }
 
-    // sheetIdが更新されたら、answersBySentenceも更新する
+    // sheetIdが更新されたら、answersも更新する
     const sheets = JSON.parse(JSON.stringify(state.gss.sheets))
     const sheet = _find(sheets, {
       properties: { sheetId: val * 1 }
@@ -33,7 +49,7 @@ export const mutations = {
       return el.formattedValue
     })
     const body = _tail(sheet)
-    const answers = body
+    let answers = body
       .filter((row) => row.values !== undefined) // rowがundefinedのものが交じる場合があるので削除 TODO もっと早い段階（sheetsとか？）で行ったほうがよい？
       .map((row) => {
         const obj = {
@@ -54,19 +70,8 @@ export const mutations = {
         return obj
       })
     // 文章ごとにグループ化したデータ
-    const answersBySentence = {}
-    _keys(answers[0].before).forEach((sentenceKey) => {
-      const before = answers.map((a) => {
-        return a.before[sentenceKey]
-      })
-      const after = answers.map((a) => {
-        return a.after[sentenceKey]
-      })
-      answersBySentence[sentenceKey] = {
-        before,
-        after
-      }
-    })
+    answers = groupBySentence(answers)
+
     // 答えの値ごとにカウントする
     const toCountDict = function (obj) {
       // arrayに変換
@@ -82,20 +87,20 @@ export const mutations = {
       }
       return dict
     }
-    for (const property in answersBySentence) {
-      const _answers = answersBySentence[property]
+    for (const property in answers) {
+      const _answers = answers[property]
       _answers.before = toCountDict(_answers.before)
       _answers.after = toCountDict(_answers.after)
     }
 
     // Update
     state.sheet = sheet
-    state.answersBySentence = answersBySentence
+    state.answers = answers
   },
   sheet(state, val) {
     state.sheet = val
   },
-  answersBySentence(state, val) {
-    state.answersBySentence = val
+  answers(state, val) {
+    state.answers = val
   }
 }

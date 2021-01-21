@@ -14,7 +14,7 @@
           .dot(v-for="i in (answers().after[point] || 0)")
   .sentences
     nuxt-link(
-      v-for="(v, k) in $store.state.answersBySentence"
+      v-for="(v, k) in $store.state.answers"
       :key="k"
       :to="`/${$store.state.sheetId}/${k}/`"
       :class="{current: decodeURI($route.fullPath) === `/${$route.params.sheet}/${k}/`}"
@@ -125,8 +125,8 @@ export default {
         : null
     },
     answers() {
-      return this.$store.state.answersBySentence
-        ? this.$store.state.answersBySentence[this.$route.params.sentence]
+      return this.$store.state.answers
+        ? this.$store.state.answers[this.$route.params.sentence]
         : null
     },
     gssLinkURI() {
