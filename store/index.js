@@ -30,8 +30,7 @@ const groupBySentence = (data) => {
 // 答えの値ごとにカウント
 const toCountDict = function (obj) {
   // arrayに変換
-  let array = !Array.isArray(obj) ? Object.values(obj) : obj
-  array = array.filter((x) => Number.isInteger(x))
+  const array = !Array.isArray(obj) ? Object.values(obj) : obj
   const dict = {}
   for (const key of array) {
     dict[String(key)] = array.filter((x) => {
@@ -54,6 +53,7 @@ export const mutations = {
     }
 
     // sheetIdが更新されたら、answersも更新する
+    // つまり、常にひとつのシート文のanswersしか持たない（パフォーマンス的に望ましい）
     const sheets = JSON.parse(JSON.stringify(state.gss.sheets))
     const sheet = _find(sheets, {
       properties: { sheetId: val * 1 }
@@ -87,13 +87,18 @@ export const mutations = {
 
     answers = groupBySentence(answers)
 
-    console.log(answers)
     for (const property in answers) {
       const _answers = answers[property]
-      _answers.before = toCountDict(_answers.before)
-      _answers.after = toCountDict(_answers.after)
+      // Cleanup: 大量にNaNが含まれているのでここで除去
+      for (const key in _answers) {
+        _answers[key] = _answers[key].filter((x) => Number.isInteger(x))
+      }
+      // 前後の結果に表示する単純なカウントを保持
+      _answers.count = {
+        before: toCountDict(_answers.before),
+        after: toCountDict(_answers.after)
+      }
     }
-    console.log(answers)
     // Update
     state.sheet = sheet
     state.answers = answers

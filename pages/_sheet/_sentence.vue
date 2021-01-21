@@ -8,10 +8,10 @@
     .graph(v-if="answers()")
       .row(v-for="point in ['2', '1', '0', '-1', '-2']")
         .before
-          .dot(v-for="i in (answers().before[point] || 0)")
+          .dot(v-for="i in (answers().count.before[point] || 0)")
         .point {{ 0 < point * 1 ? `+${point}` : point }}
         .after
-          .dot(v-for="i in (answers().after[point] || 0)")
+          .dot(v-for="i in (answers().count.after[point] || 0)")
   .sentences
     nuxt-link(
       v-for="(v, k) in $store.state.answers"
