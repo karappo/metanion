@@ -1,8 +1,8 @@
 <template lang="pug">
 .container
   h3 ビジュアライズしたいアンケートを選択
-  .sheets(v-if="this.$store.state.gss")
-    nuxt-link.sheetLink(v-for="(sheet, idx) in this.$store.state.gss.sheets" v-if="!/^_/.test(sheet.properties.title)" :to="`/${sheet.properties.sheetId}/`" :key="idx") {{ sheet.properties.title }}
+  .sheets(v-if="$store.state.gss")
+    nuxt-link.sheetLink(v-for="(sheet, idx) in $store.state.gss.sheets" v-if="!/^_/.test(sheet.properties.title)" :to="`/${sheet.properties.sheetId}/`" :key="idx") {{ sheet.properties.title }}
 </template>
 
 <style lang="sass" scoped>
