@@ -1,6 +1,6 @@
 <template lang="pug">
 .content
-  ExternalLink.gssLink(:href="sheetURI()" targe='_blank')
+  ExternalLink.gssLink(:href="gssLinkURI()" targe='_blank')
     img.icon(src='~assets/image/google-sheets.svg')
   .wrap
     h2 {{ $route.params.sentence }}の回答の変化
@@ -119,8 +119,8 @@ export default {
         ? this.$store.state.answersBySentence[this.$route.params.sentence]
         : null
     },
-    sheetURI() {
-      return `https://docs.google.com/spreadsheets/d/1lu3DbgrhnZYCKT7KuwaZB0Y9VnMH-Vwxf-y2BstPLOM/edit#gid=${this.$store.state.sheetId}`
+    gssLinkURI() {
+      return `${this.$const.spreadsheetURI}#gid=${this.$store.state.sheetId}`
     }
   }
 }

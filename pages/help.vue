@@ -4,11 +4,11 @@
   h2 フォームを作って、スプレッドシートと紐付ける
   ol
     li
-      nuxt-link(to='https://docs.google.com/forms/') Google Forms
+      ExternalLink(href='https://docs.google.com/forms/') Google Forms
       | より、新しいフォームを作成
     li
       | 「回答」タブより「回答先の選択」から「既存のスプレッドシートを選択」より、
-      nuxt-link(to='https://docs.google.com/spreadsheets/d/1lu3DbgrhnZYCKT7KuwaZB0Y9VnMH-Vwxf-y2BstPLOM/edit') Metanion Answers
+      ExternalLink(:href="$const.spreadsheetURI") Metanion Answers
       | を選択
       ul
         li もし、選択肢の中に見つからない場合は権限があることを確認してください
@@ -30,8 +30,6 @@
     li 回答の結果画面が表示される
 </template>
 
-<script></script>
-
 <style lang="sass" scoped>
 @import ~assets/style/const
 .container
@@ -50,3 +48,12 @@ ol
     li + li
       margin-top: 0
 </style>
+
+<script>
+import { ExternalLink } from '@karappo-inc/vue-components'
+export default {
+  components: {
+    ExternalLink
+  }
+}
+</script>
