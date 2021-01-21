@@ -2,6 +2,7 @@ import _find from 'lodash/find'
 import _keys from 'lodash/keys'
 import _take from 'lodash/take'
 import _tail from 'lodash/tail'
+import _sortBy from 'lodash/sortBy'
 
 export const state = () => ({
   gss: null,
@@ -93,6 +94,24 @@ export const mutations = {
       for (const key in _answers) {
         _answers[key] = _answers[key].filter((x) => Number.isInteger(x))
       }
+
+      // Create transform
+      _answers.transform = []
+      // const _after = JSON.parse(JSON.stringify(_answers.after))
+      // console.log(_after)
+      _answers.before.forEach((v, i) => {
+        _answers.transform.push({
+          index: i,
+          before: v,
+          after: _answers.after[i],
+          difference: _answers.after[i] - v
+        })
+      })
+      console.log('----------------------------------')
+      console.log(JSON.stringify(_answers.transform))
+      _answers.transform = _sortBy(_answers.transform, ['after']).reverse()
+      console.log(JSON.stringify(_answers.transform))
+
       // 前後の結果に表示する単純なカウントを保持
       _answers.count = {
         before: toCountDict(_answers.before),
