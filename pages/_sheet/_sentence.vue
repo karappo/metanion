@@ -3,8 +3,8 @@
   ExternalLink.gssLink(:href="gssLinkURI()" targe='_blank')
     img.icon(src='~assets/image/google-sheets.svg')
   .wrap
-    h1(v-if="sheet()") {{ sheet().properties.title }}
-    h2 {{ $route.params.sentence }}
+    h2(v-if="sheet()") {{ sheet().properties.title }}
+    h1 {{ $route.params.sentence }}
     .graph(v-if="answers()")
       .row(v-for="point in ['2', '1', '0', '-1', '-2']")
         .before
@@ -21,7 +21,7 @@
     ) {{ i + 1 }}
 </template>
 
-<style lang="sass">
+<style lang="sass" scoped>
 .content
   width: 100%
   min-height: calc(100vh - 60px)
@@ -53,6 +53,9 @@
 h1,
 h2
   text-align: center
+  width: 50%
+  margin-left: auto
+  margin-right: auto
 .graph
   font-family: helvetica
   color: #999999
