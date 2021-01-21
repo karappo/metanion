@@ -4,7 +4,7 @@
     img.icon(src='~assets/image/google-sheets.svg')
   .wrap
     h1(v-if="sheet()") {{ sheet().properties.title }}
-    h2 {{ $route.params.sentence }}の回答の変化
+    h2 {{ $route.params.sentence }}
     .graph(v-if="answers()")
       .row(v-for="point in ['2', '1', '0', '-1', '-2']")
         .before
@@ -14,11 +14,11 @@
           .dot(v-for="i in (answers().count.after[point] || 0)")
   .sentences
     nuxt-link(
-      v-for="(v, k) in $store.state.answers"
+      v-for="(v, k, i) in $store.state.answers"
       :key="k"
       :to="`/${$store.state.sheetId}/${k}/`"
       :class="{current: decodeURI($route.fullPath) === `/${$route.params.sheet}/${k}/`}"
-    ) {{ k }}
+    ) {{ i + 1 }}
 </template>
 
 <style lang="sass">
@@ -114,6 +114,7 @@ export default {
     ExternalLink
   },
   mounted() {
+    console.log('mounted!')
     this.$store.commit('sheetId', this.$route.params.sheet)
   },
   methods: {
