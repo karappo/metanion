@@ -1,7 +1,6 @@
 <template lang="pug">
 .content
-  ExternalLink.gssLink(:href="gssLinkURI()" targe='_blank')
-    img.icon(src='~assets/image/google-sheets.svg')
+  ExternalLink.gssLink(v-if="sheet()" :href="gssLinkURI()" targe='_blank') {{ sheet().properties.title }}
   .wrap
     h2(v-if="sheet()") {{ sheet().properties.title }}
     h1 {{ $route.params.sentence }}
@@ -48,21 +47,6 @@
   justify-content: center
   align-items: center
   background: white
-.gssLink
-  position: absolute
-  bottom: 0
-  right: 0
-  display: flex
-  flex-direction: column
-  align-items: center
-  font-size: 13px
-  border-bottom: 0
-  padding: 30px
-  border-bottom: 0 !important
-  z-index: 2
-  .icon
-    width: 40px
-    height: auto
 .wrap
   width: 100%
   height: 100%
