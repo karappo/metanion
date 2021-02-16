@@ -14,7 +14,6 @@
   flex-wrap: wrap
   flex-direction: column
 .help
-  border: none
   font-size: 16px
   font-weight: bold
   width: auto
