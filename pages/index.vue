@@ -1,7 +1,7 @@
 <template lang="pug">
 .container
   img(src="~assets/image/logo.png" srcset="~assets/image/logo.png 1x, ~assets/image/logo@2x.png 2x")
-  ExternalLink.help(href="https://docs.google.com/document/d/1wSAPXohNnF5o42wEkVlBjWn9I17vawxKf5gU6_VnKHQ/") 管理者用ページ
+  ExternalLink.help(href="https://docs.google.com/document/d/1wSAPXohNnF5o42wEkVlBjWn9I17vawxKf5gU6_VnKHQ/") 取扱説明書
   h3 ビジュアライズしたいシートを選択してください
   .sheets(v-if="$store.state.gss")
     nuxt-link.sheetLink(v-for="(sheet, idx) in $store.state.gss.sheets" v-if="!/^_/.test(sheet.properties.title)" :to="`/${sheet.properties.sheetId}/`" :key="idx") {{ sheet.properties.title }}
