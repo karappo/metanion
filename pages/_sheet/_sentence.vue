@@ -2,8 +2,8 @@
 .wrap
   .content
     // TODO 数字を取得する
-    h2 文章1
-    h1 {{ questionText() }}
+    h1 文章1
+    p.question {{ questionText() }}
     .graph(v-if="answers()")
       .before
         .dots
@@ -64,17 +64,16 @@ $footer_inner_height: 69px
 .table
   width: 400px
   margin: 0 auto 30px
-h1,
-h2
-  text-align: center
-  width: 50%
-  margin-left: auto
-  margin-right: auto
-h2
-  font-size: 22px
 h1
+  text-align: center
+  margin: 53px auto 0
+  font-size: 22px
+.question
+  max-width: 580px
+  margin: 0 auto
   font-size: 26px
   line-height: 53px
+  font-weight: bold
 .graph
   font-family: helvetica
   color: #999999
@@ -110,11 +109,14 @@ h1
     align-items: center
     flex-wrap: wrap
   .point
-    font-size: 16px
-    border: 1px solid #D9D9D9
+    $border_width: 4px
+    font-size: 23px
+    font-weight: bold
+    color: #808080
+    border: $border_width solid #999999
     border-radius: 4px
-    width: 70px
-    height: 100%
+    width: 68px
+    height: calc(100% - #{$border_width * 2})
     margin: 0 12px
     display: flex
     justify-content: center
