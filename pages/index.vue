@@ -13,6 +13,7 @@
   display: flex
   flex-wrap: wrap
   flex-direction: column
+  margin: 30px
 .help
   font-size: 16px
   font-weight: bold
