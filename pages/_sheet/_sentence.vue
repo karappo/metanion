@@ -9,10 +9,10 @@
         .dots
           .row(v-for="p in points")
             .dot(v-for="i in (answers().count.before[p] || 0)")
-        .points
+        .points(v-if="showTransform")
           .row(v-for="p in points")
             .point {{ 0 < p * 1 ? `+${p}` : p }}
-      .transform
+      .transform(v-if="showTransform")
         .unit(
           v-for="t in answers().transform"
           v-if="t.difference !== 0"
@@ -22,8 +22,11 @@
         )
           .dot
           .dot
+      .points(v-else)
+        .row(v-for="p in points")
+          .point {{ 0 < p * 1 ? `+${p}` : p }}
       .after
-        .points
+        .points(v-if="showTransform")
           .row(v-for="p in points")
             .point {{ 0 < p * 1 ? `+${p}` : p }}
         .dots
@@ -41,7 +44,7 @@
       )
         span {{ i + 1 }}
     a.toggleButton(@click="toggle")
-      IconClose(v-if="opened")
+      IconClose(v-if="showTransform")
       IconOpen(v-else)
     ExternalLink.gssLink(v-if="sheet()" :href="gssLinkURI()" targe='_blank') {{ sheet().properties.title }}
 </template>
@@ -237,7 +240,7 @@ export default {
   },
   data() {
     return {
-      opened: false,
+      showTransform: false,
       points: ['2', '1', '0', '-1', '-2']
     }
   },
@@ -246,7 +249,7 @@ export default {
   },
   methods: {
     toggle() {
-      this.opened = !this.opened
+      this.showTransform = !this.showTransform
     },
     sheet() {
       return this.$store.state.gss
