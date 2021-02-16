@@ -31,6 +31,15 @@ export default {
     '~assets/style/common'
   ],
 
+  /*
+   ** Customize the progress-bar color
+   */
+  loading: {
+    name: 'circle',
+    color: '#79cdbc',
+    background: '#222427',
+  },
+
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     '~/plugins/constants',
