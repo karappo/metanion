@@ -1,34 +1,46 @@
 <template lang="pug">
 .container
-  h3 ビジュアライズしたいシートを選択
+  img(src="~assets/image/logo.png" srcset="~assets/image/logo.png 1x, ~assets/image/logo@2x.png 2x")
+  ExternalLink.help(href="https://docs.google.com/document/d/1wSAPXohNnF5o42wEkVlBjWn9I17vawxKf5gU6_VnKHQ/") 管理者用ページ
+  h3 ビジュアライズしたいシートを選択してください
   .sheets(v-if="$store.state.gss")
     nuxt-link.sheetLink(v-for="(sheet, idx) in $store.state.gss.sheets" v-if="!/^_/.test(sheet.properties.title)" :to="`/${sheet.properties.sheetId}/`" :key="idx") {{ sheet.properties.title }}
 </template>
 
 <style lang="sass" scoped>
 @import ~assets/style/const
+.container
+  display: flex
+  flex-wrap: wrap
+  flex-direction: column
+.help
+  border: none
+  font-size: 16px
+  font-weight: bold
+  width: auto
+  margin: 18px 0 18px auto
 h3
-  font-size: 20px
-  text-align: center
-.sheets
-  min-width: 400px
+  font-size: 18px
+  margin: 50px 0 20px 0
 .sheetLink
-  background: white
   display: block
-  color: #ccc
-  border-radius: 5px
-  margin: 5px
+  color: #666666
   padding: 20px
   display: flex
   align-items: center
-  border: 0
-  &:after
-    content: '▶'
-    color: #ccc
-    margin-left: auto
-    margin-right: 0
+  border: 1px solid #707070
+  font-size: 16px
   &:hover
-    color: $color_main
-    &:after
-      color: $color_main
+    background: #E6E6E6
+.sheetLink + .sheetLink
+  margin-top: 12px
 </style>
+
+<script>
+import { ExternalLink } from '@karappo-inc/vue-components'
+export default {
+  components: {
+    ExternalLink
+  }
+}
+</script>
