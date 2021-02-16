@@ -1,8 +1,9 @@
 <template lang="pug">
 .wrap
   .content
-    h2(v-if="sheet()") {{ sheet().properties.title }}
-    h1 {{ $route.params.sentence }}
+    // TODO 数字を取得する
+    h2 文章1
+    h1 {{ questionText() }}
     .graph(v-if="answers()")
       .before
         .dots
@@ -66,6 +67,11 @@ h2
   width: 50%
   margin-left: auto
   margin-right: auto
+h2
+  font-size: 22px
+h1
+  font-size: 26px
+  line-height: 53px
 .graph
   font-family: helvetica
   color: #999999
@@ -256,6 +262,13 @@ export default {
     },
     gssLinkURI() {
       return `${this.$const.spreadsheetURI}#gid=${this.$store.state.sheetId}`
+    },
+    questionText() {
+      // 先頭の数字を撮って文章だけにして返す
+      return this.$route.params.sentence
+        .replace(/^[①-㊿]/, '') // 先頭の丸数字を削除
+        .replace(/^[0-9]+\./, '') // 先頭の 1. を削除
+        .trim()
     }
   }
 }
