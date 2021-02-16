@@ -1,7 +1,6 @@
 <template lang="pug">
-.content
-  ExternalLink.gssLink(v-if="sheet()" :href="gssLinkURI()" targe='_blank') {{ sheet().properties.title }}
-  .wrap
+.wrap
+  .content
     h2(v-if="sheet()") {{ sheet().properties.title }}
     h1 {{ $route.params.sentence }}
     .graph(v-if="answers()")
@@ -29,27 +28,35 @@
         .dots
           .row(v-for="p in points")
             .dot(v-for="i in (answers().count.after[p] || 0)")
-  .sentences
-    nuxt-link(
-      v-for="(v, k, i) in $store.state.answers"
-      :key="k"
-      :to="`/${$store.state.sheetId}/${k}/`"
-      :class="{current: decodeURI($route.fullPath) === `/${$route.params.sheet}/${k}/`}"
-    ) {{ i + 1 }}
+  footer
+    nuxt-link(to="/").logotype
+      Logotype
+    .sentences
+      nuxt-link(
+        v-for="(v, k, i) in $store.state.answers"
+        :key="k"
+        :to="`/${$store.state.sheetId}/${k}/`"
+        :class="{current: decodeURI($route.fullPath) === `/${$route.params.sheet}/${k}/`}"
+      )
+        span {{ i + 1 }}
+    a.toggleButton(@click="toggle")
+      IconClose(v-if="opened")
+      IconOpen(v-else)
+    ExternalLink.gssLink(v-if="sheet()" :href="gssLinkURI()" targe='_blank') {{ sheet().properties.title }}
 </template>
 
 <style lang="sass" scoped>
-.content
-  width: 100%
-  min-height: calc(100vh - 60px)
-  position: relative
-  display: flex
-  justify-content: center
-  align-items: center
-  background: white
+$footer_inner_height: 69px
+
 .wrap
   width: 100%
   height: 100%
+  display: flex
+  flex-wrap: wrap
+  flex-direction: column
+.content
+  width: 100%
+  height: calc(100vh - #{$footer_inner_height + 1px})
 .table
   width: 400px
   margin: 0 auto 30px
@@ -166,26 +173,65 @@ h2
     margin: 3px
     background-color: #999999
     border-radius: 7px
+footer
+  height: $footer_inner_height
+  border-top: 1px solid #CCCCCC
+  margin: 0
+  display: flex
+.logotype
+  margin-left: 56px
+  display: flex
+  align-items: center
 .sentences
   text-align: center
-  position: absolute
-  width: 100%
-  bottom: 30px
+  margin-left: auto
+  margin-right: auto
+  display: flex
+  align-items: center
+  a
+    span
+      display: flex
+      justify-content: center
+      align-items: center
+      width: 84px
+      height: 24px
+    &.current
+      span
+        background-color: #999999
+        color: white
   a + a
     margin-left: 15px
-  a.current
-    border-color: #546fff
+.toggleButton
+  display: flex
+  align-items: center
+  justify-content: center
+  width: $footer_inner_height
+  height: $footer_inner_height
+  cursor: pointer
+.gssLink
+  display: flex
+  align-items: center
+  font-size: 16px
+  margin-left: 130px
+  margin-right: 56px
 </style>
 
 <script>
 import _find from 'lodash/find'
 import { ExternalLink } from '@karappo-inc/vue-components'
+import IconClose from '~/assets/image/close.svg?inline'
+import IconOpen from '~/assets/image/open.svg?inline'
+import Logotype from '~/assets/image/logotype.svg?inline'
 export default {
   components: {
-    ExternalLink
+    ExternalLink,
+    IconClose,
+    IconOpen,
+    Logotype
   },
   data() {
     return {
+      opened: false,
       points: ['2', '1', '0', '-1', '-2']
     }
   },
@@ -193,6 +239,9 @@ export default {
     this.$store.commit('sheetId', this.$route.params.sheet)
   },
   methods: {
+    toggle() {
+      this.opened = !this.opened
+    },
     sheet() {
       return this.$store.state.gss
         ? _find(this.$store.state.gss.sheets, {
