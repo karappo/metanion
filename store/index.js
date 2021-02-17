@@ -93,12 +93,8 @@ export const mutations = {
     for (const index in answers) {
       const _answers = answers[index]
       // Cleanup: 大量にNaNが含まれているのでここで除去
-      // TODO ここも復活させる
-      console.log('_answers', _answers)
-      // for (const key in _answers) {
-      //   console.log(key, _answers[key])
-      //   _answers[key] = _answers[key].filter((x) => Number.isInteger(x))
-      // }
+      _answers.before = _answers.before.filter((x) => Number.isInteger(x))
+      _answers.after = _answers.after.filter((x) => Number.isInteger(x))
 
       // Create transform
       _answers.transform = []
