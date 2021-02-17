@@ -1,8 +1,7 @@
 <template lang="pug">
 .wrap
   .content
-    // TODO 数字を取得する
-    h1 文章1
+    h1 文章{{ $route.params.sentence }}
     p.question {{ questionText() }}
     .graph(v-if="answers")
       .before
