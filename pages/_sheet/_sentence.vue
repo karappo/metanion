@@ -7,8 +7,10 @@
     .graph(v-if="answers()")
       .before
         .dots
+          .row
           .row(v-for="p in points")
             .dot(v-for="i in (answers().count.before[p] || 0)")
+          .row
         PointAxis(v-if="showTransform")
       .transform(v-if="showTransform")
         .unit(
@@ -24,8 +26,10 @@
       .after
         PointAxis(v-if="showTransform")
         .dots
+          .row
           .row(v-for="p in points")
             .dot(v-for="i in (answers().count.after[p] || 0)")
+          .row
   footer
     .left
       nuxt-link(to="/").logotype
@@ -72,52 +76,47 @@ h1
   line-height: 53px
   font-weight: bold
 .graph
-  font-family: helvetica
   color: #999999
   max-width: 1920px
   width: calc(100% - 60px)
   margin: 0 auto
   display: flex
-  flex-wrap: nowrap
-  align-items: center
+  > *
+    // display: flex
+    align-items: center
   .before,
   .after
     width: calc((100% - 70px) / 2)
-    max-width: 400px // 20px x 20
+    max-width: 500px // 20px x 25
     height: 100%
     display: flex
   .before
     justify-content: flex-end
     margin-left: auto
     margin-right: 0
+    background-color: rgba(0,255,0,0.5)
+    background-image: url(~assets/image/before-axis.svg)
+    background-repeat: no-repeat
+    background-position: left top
     .row
       flex-direction: row-reverse
       margin-left: auto
   .after
     margin-left: 0
     margin-right: auto
+    background-color: rgba(255,0,0,0.5)
+    background-image: url(~assets/image/after-axis.svg)
+    background-repeat: no-repeat
+    background-position: right top
     .row
       margin-right: auto
   .row
-    margin: 32px auto
+    margin: 54px auto
     height: 48px
     display: flex
     flex-direction: row
     align-items: center
     flex-wrap: wrap
-  .point
-    $border_width: 4px
-    font-size: 23px
-    font-weight: bold
-    color: #808080
-    border: $border_width solid #999999
-    border-radius: 4px
-    width: 68px
-    height: calc(100% - #{$border_width * 2})
-    margin: 0 12px
-    display: flex
-    justify-content: center
-    align-items: center
   .transform
     $red: #EF68B6
     $blue: #68DAEF
@@ -176,8 +175,8 @@ h1
       align-items: center
       flex-wrap: nowrap
   .dot
-    width: 14px
-    height: 14px
+    width: 12px
+    height: 12px
     margin: 3px
     background-color: #999999
     border-radius: 7px
