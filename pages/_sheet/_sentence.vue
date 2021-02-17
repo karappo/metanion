@@ -9,9 +9,7 @@
         .dots
           .row(v-for="p in points")
             .dot(v-for="i in (answers().count.before[p] || 0)")
-        .points(v-if="showTransform")
-          .row(v-for="p in points")
-            .point {{ 0 < p * 1 ? `+${p}` : p }}
+        PointAxis(v-if="showTransform")
       .transform(v-if="showTransform")
         .unit(
           v-for="t in answers().transform"
@@ -22,13 +20,9 @@
         )
           .dot
           .dot
-      .points(v-else)
-        .row(v-for="p in points")
-          .point {{ 0 < p * 1 ? `+${p}` : p }}
+      PointAxis(v-else)
       .after
-        .points(v-if="showTransform")
-          .row(v-for="p in points")
-            .point {{ 0 < p * 1 ? `+${p}` : p }}
+        PointAxis(v-if="showTransform")
         .dots
           .row(v-for="p in points")
             .dot(v-for="i in (answers().count.after[p] || 0)")
@@ -52,7 +46,7 @@
       ExternalLink.gssLink(v-if="sheet()" :href="gssLinkURI()" targe='_blank') {{ sheet().properties.title }}
 </template>
 
-<style lang="sass" scoped>
+<style lang="sass">
 $footer_inner_height: 69px
 
 .wrap
