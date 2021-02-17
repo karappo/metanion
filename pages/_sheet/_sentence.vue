@@ -12,15 +12,17 @@
         template(v-if="showTransform")
           PointAxis
           .transform
-            .unit(
-              v-for="t in answers.transform"
-              v-if="t.difference !== 0"
-              :data-before="t.before"
-              :data-after="t.after"
-              :data-difference="t.difference"
-            )
-              .dot
-              .dot
+            .transformGraph
+              .unit(
+                v-for="t in answers.transform"
+                v-if="t.difference !== 0"
+                :data-before="t.before"
+                :data-after="t.after"
+                :data-difference="t.difference"
+              )
+                .dot
+                .dot
+            TransformInfo
           PointAxis
         template(v-else)
           PointAxis
@@ -49,6 +51,8 @@
 </template>
 
 <style lang="sass">
+@import ~assets/style/const
+
 $footer_inner_height: 69px
 
 .wrap
@@ -117,8 +121,11 @@ h1
     align-items: center
     flex-wrap: wrap
   .transform
-    $red: #EF68B6
-    $blue: #68DAEF
+    height: 100%
+    display: flex
+    flex-direction: column
+    justify-content: flex-end
+  .transformGraph
     $height: 102px
 
     display: flex
@@ -130,7 +137,7 @@ h1
     background-repeat: no-repeat
     background-position: center
     .unit
-      background: $red
+      background: $color_pink
       display: flex
       flex-direction: column
       justify-content: space-between
@@ -147,28 +154,28 @@ h1
       .unit[data-difference='#{$i}']
         flex-direction: column-reverse
         height: #{$height * $i}
-        background: linear-gradient(lighten($red, 10%), lighten($red, 50%))
+        background: linear-gradient(lighten($color_pink, 10%), lighten($color_pink, 50%))
         @for $i from -2 to 2
           &[data-before='#{$i}']
             margin-bottom: #{$height * ($i + 2)}
         .dot
-          border: 1px solid lighten($red, 20%)
+          border: 1px solid lighten($color_pink, 20%)
           &:nth-child(2) // after
-            background-color: $red
-            border-color: $red
+            background-color: $color_pink
+            border-color: $color_pink
     @for $i from 1 to 4
       .unit[data-difference='-#{$i}']
         height: #{$height * $i}
-        background: linear-gradient(lighten($blue, 50%), lighten($blue, 10%))
+        background: linear-gradient(lighten($color_blue, 50%), lighten($color_blue, 10%))
         @for $i from -2 to 2
           &[data-before='#{$i}']
             align-self: flex-start
             margin-top: #{$height * (2 - $i)}
         .dot
-          border: 1px solid lighten($blue, 20%)
+          border: 1px solid lighten($color_blue, 20%)
           &:nth-child(2) // after
-            background-color: $blue
-            border-color: $blue
+            background-color: $color_blue
+            border-color: $color_blue
     .dot
       margin: -7px 0
     span
@@ -281,7 +288,7 @@ export default {
   },
   data() {
     return {
-      showTransform: false,
+      showTransform: true,
       points: ['2', '1', '0', '-1', '-2']
     }
   },
