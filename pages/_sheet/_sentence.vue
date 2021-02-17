@@ -61,16 +61,19 @@ $footer_inner_height: 69px
 .content
   width: 100%
   height: calc(100vh - #{$footer_inner_height + 1px})
+  display: flex
+  flex-direction: column
+  justify-content: center
 .table
   width: 400px
   margin: 0 auto 30px
 h1
   text-align: center
-  margin: 53px auto 0
+  margin: 0 auto
   font-size: 22px
 .question
   max-width: 580px
-  margin: 0 auto
+  margin: 0 auto 45px
   font-size: 26px
   line-height: 53px
   font-weight: bold
