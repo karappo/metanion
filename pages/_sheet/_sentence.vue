@@ -7,29 +7,28 @@
     .graph(v-if="answers()")
       .before
         .dots
-          .row
           .row(v-for="p in points")
             .dot(v-for="i in (answers().count.before[p] || 0)")
-          .row
-        PointAxis(v-if="showTransform")
-      .transform(v-if="showTransform")
-        .unit(
-          v-for="t in answers().transform"
-          v-if="t.difference !== 0"
-          :data-before="t.before"
-          :data-after="t.after"
-          :data-difference="t.difference"
-        )
-          .dot
-          .dot
-      PointAxis(v-else)
+      .center
+        template(v-if="showTransform")
+          PointAxis
+          .transform
+            .unit(
+              v-for="t in answers().transform"
+              v-if="t.difference !== 0"
+              :data-before="t.before"
+              :data-after="t.after"
+              :data-difference="t.difference"
+            )
+              .dot
+              .dot
+          PointAxis
+        template(v-else)
+          PointAxis
       .after
-        PointAxis(v-if="showTransform")
         .dots
-          .row
           .row(v-for="p in points")
             .dot(v-for="i in (answers().count.after[p] || 0)")
-          .row
   footer
     .left
       nuxt-link(to="/").logotype
@@ -82,32 +81,30 @@ h1
   margin: 0 auto
   display: flex
   > *
-    // display: flex
+    display: flex
     align-items: center
   .before,
   .after
     width: calc((100% - 70px) / 2)
-    max-width: 500px // 20px x 25
-    height: 100%
-    display: flex
+    max-width: 450px // 18px x 25
   .before
     justify-content: flex-end
     margin-left: auto
     margin-right: 0
-    background-color: rgba(0,255,0,0.5)
     background-image: url(~assets/image/before-axis.svg)
     background-repeat: no-repeat
-    background-position: left top
+    background-position: 44px 15px
+    padding-left: 50px
     .row
       flex-direction: row-reverse
       margin-left: auto
   .after
     margin-left: 0
     margin-right: auto
-    background-color: rgba(255,0,0,0.5)
     background-image: url(~assets/image/after-axis.svg)
     background-repeat: no-repeat
-    background-position: right top
+    background-position: 78px 15px
+    padding-right: 50px
     .row
       margin-right: auto
   .row
@@ -268,12 +265,14 @@ import { ExternalLink } from '@karappo-inc/vue-components'
 import IconClose from '~/assets/image/close.svg?inline'
 import IconOpen from '~/assets/image/open.svg?inline'
 import Logotype from '~/assets/image/logotype.svg?inline'
+import PointAxis from '~/assets/image/point-axis.svg?inline'
 export default {
   components: {
     ExternalLink,
     IconClose,
     IconOpen,
-    Logotype
+    Logotype,
+    PointAxis
   },
   data() {
     return {
