@@ -4,17 +4,17 @@
     // TODO 数字を取得する
     h1 文章1
     p.question {{ questionText() }}
-    .graph(v-if="answers()")
+    .graph(v-if="answers")
       .before
         .dots
           .row(v-for="p in points")
-            .dot(v-for="i in (answers().count.before[p] || 0)")
+            .dot(v-for="i in (answers.count.before[p] || 0)")
       .center
         template(v-if="showTransform")
           PointAxis
           .transform
             .unit(
-              v-for="t in answers().transform"
+              v-for="t in answers.transform"
               v-if="t.difference !== 0"
               :data-before="t.before"
               :data-after="t.after"
@@ -28,7 +28,7 @@
       .after
         .dots
           .row(v-for="p in points")
-            .dot(v-for="i in (answers().count.after[p] || 0)")
+            .dot(v-for="i in (answers.count.after[p] || 0)")
   footer
     .left
       nuxt-link(to="/").logotype
@@ -36,10 +36,10 @@
     .center
       .pages
         nuxt-link(
-          v-for="(v, k, i) in $store.state.answers"
-          :key="k"
-          :to="`/${$store.state.sheetId}/${k}/`"
-          :class="{current: decodeURI($route.fullPath) === `/${$route.params.sheet}/${k}/`}"
+          v-for="(v, i) in $store.state.answers"
+          :key="i"
+          :to="`/${$store.state.sheetId}/${i + 1}/`"
+          :class="{current: decodeURI($route.fullPath) === `/${$route.params.sheet}/${i + 1}/`}"
         )
           span {{ i + 1 }}
     .right
@@ -286,6 +286,16 @@ export default {
       points: ['2', '1', '0', '-1', '-2']
     }
   },
+  computed: {
+    sentenceIndex() {
+      return this.$route.params.sentence - 1
+    },
+    answers() {
+      return this.$store.state.answers
+        ? this.$store.state.answers[this.sentenceIndex]
+        : null
+    }
+  },
   mounted() {
     this.$store.commit('sheetId', this.$route.params.sheet)
   },
@@ -300,20 +310,17 @@ export default {
           })
         : null
     },
-    answers() {
-      return this.$store.state.answers
-        ? this.$store.state.answers[this.$route.params.sentence]
-        : null
-    },
     gssLinkURI() {
       return `${this.$const.spreadsheetURI}#gid=${this.$store.state.sheetId}`
     },
     questionText() {
       // 先頭の数字を撮って文章だけにして返す
-      return this.$route.params.sentence
-        .replace(/^[①-㊿]/, '') // 先頭の丸数字を削除
-        .replace(/^[0-9]+\./, '') // 先頭の 1. を削除
-        .trim()
+      return this.answers
+        ? this.answers.question
+            .replace(/^[①-㊿]/, '') // 先頭の丸数字を削除
+            .replace(/^[0-9]+\./, '') // 先頭の 1. を削除
+            .trim()
+        : null
     }
   }
 }

@@ -1,4 +1,3 @@
-import _find from 'lodash/find'
 export default async function ({ params, redirect, store }) {
   if (!store.state.gss) {
     const gss = await fetch(
@@ -15,13 +14,6 @@ export default async function ({ params, redirect, store }) {
 
   // シートのトップページの時、リダイレクト
   if (params.sheet && !params.sentence) {
-    const sheet = _find(store.state.gss.sheets, {
-      properties: { sheetId: params.sheet * 1 }
-    })
-    const sentenceText = sheet.data[0].rowData[0].values[1].formattedValue.replace(
-      /.*\[(.*)\].*/,
-      '$1'
-    )
-    redirect(301, `/${params.sheet}/${sentenceText}/`)
+    redirect(301, `/${params.sheet}/1/`)
   }
 }

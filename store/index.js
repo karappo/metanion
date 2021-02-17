@@ -13,18 +13,20 @@ export const state = () => ({
 
 // 文章ごとにグループ化
 const groupBySentence = (data) => {
-  const res = {}
-  _keys(data[0].before).forEach((sentenceKey) => {
+  const res = []
+  _keys(data[0].before).forEach((sentenceKey, index) => {
+    console.log(sentenceKey)
     const before = data.map((a) => {
       return a.before[sentenceKey]
     })
     const after = data.map((a) => {
       return a.after[sentenceKey]
     })
-    res[sentenceKey] = {
+    res.push({
+      question: sentenceKey,
       before,
       after
-    }
+    })
   })
   return res
 }
@@ -87,13 +89,16 @@ export const mutations = {
       })
 
     answers = groupBySentence(answers)
-
-    for (const property in answers) {
-      const _answers = answers[property]
+    console.log(answers)
+    for (const index in answers) {
+      const _answers = answers[index]
       // Cleanup: 大量にNaNが含まれているのでここで除去
-      for (const key in _answers) {
-        _answers[key] = _answers[key].filter((x) => Number.isInteger(x))
-      }
+      // TODO ここも復活させる
+      console.log('_answers', _answers)
+      // for (const key in _answers) {
+      //   console.log(key, _answers[key])
+      //   _answers[key] = _answers[key].filter((x) => Number.isInteger(x))
+      // }
 
       // Create transform
       _answers.transform = []
