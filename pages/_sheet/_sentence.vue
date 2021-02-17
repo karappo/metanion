@@ -95,7 +95,7 @@ h1
     margin-right: 0
     background-image: url(~assets/image/before-axis.svg)
     background-repeat: no-repeat
-    background-position: 44px 15px
+    background-position: right 76px top 15px
     padding-left: 50px
     .row
       flex-direction: row-reverse
@@ -105,7 +105,7 @@ h1
     margin-right: auto
     background-image: url(~assets/image/after-axis.svg)
     background-repeat: no-repeat
-    background-position: 78px 15px
+    background-position: left 78px top 15px
     padding-right: 50px
     .row
       margin-right: auto
