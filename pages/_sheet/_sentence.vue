@@ -117,13 +117,16 @@ h1
   .transform
     $red: #EF68B6
     $blue: #68DAEF
-    $height: 79px
+    $height: 102px
 
     display: flex
     align-items: flex-end
     justify-content: space-around
-    width: 800px
-    height: #{$height * 4}
+    width: 700px
+    height: #{$height * 4 + 2px} // 画像が切れないように+2pxしている
+    background-image: url(~assets/image/transform-background.svg)
+    background-repeat: no-repeat
+    background-position: center
     .unit
       background: $red
       display: flex
