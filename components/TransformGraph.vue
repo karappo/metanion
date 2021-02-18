@@ -7,8 +7,10 @@
     :data-after="t.after"
     :data-difference="t.difference"
   )
-    .dot
-    .dot
+    .line
+    .dots
+      .dot
+      .dot
 </template>
 
 <style lang="sass">
@@ -25,53 +27,62 @@
   background-repeat: no-repeat
   background-position: center
   .unit
-    background: $color_pink
-    display: flex
-    flex-direction: column
-    justify-content: space-between
-  .dot
+    position: relative
     width: 12px
-    height: 12px
-    border-radius: 100%
-    display: flex
-    justify-content: center
-    align-items: center
-    font-size: 9px
-    &:nth-child(1) // before
-      background-color: white
+    .line
+      height: 100%
+      width: 6px
+      margin: 0 auto
+    .dots
+      position: absolute
+      top: 0
+      left: 0
+      height: 100%
+      width: 100%
+      display: flex
+      flex-direction: column
+      justify-content: space-between
+      .dot
+        width: 10px
+        height: 10px
+        border: 1px solid transparent
+        border-radius: 100%
+        display: flex
+        justify-content: center
+        align-items: center
+        font-size: 9px
+        margin: -7px 0
+        &:nth-child(1) // before
+          background-color: white
   @for $i from 1 to 4
     .unit[data-difference='#{$i}']
-      flex-direction: column-reverse
       height: #{$height * $i}
-      background: linear-gradient(lighten($color_pink, 10%), lighten($color_pink, 50%))
+      .line
+        background: linear-gradient(lighten($color_pink, 10%), lighten($color_pink, 50%))
       @for $i from -2 to 2
         &[data-before='#{$i}']
           margin-bottom: #{$height * ($i + 2)}
+      .dots
+        flex-direction: column-reverse
       .dot
-        border: 1px solid lighten($color_pink, 20%)
+        border-color: lighten($color_pink, 20%)
         &:nth-child(2) // after
           background-color: $color_pink
           border-color: $color_pink
   @for $i from 1 to 4
     .unit[data-difference='-#{$i}']
       height: #{$height * $i}
-      background: linear-gradient(lighten($color_blue, 50%), lighten($color_blue, 10%))
+      .line
+        background: linear-gradient(lighten($color_blue, 50%), lighten($color_blue, 10%))
       @for $i from -2 to 2
         &[data-before='#{$i}']
           align-self: flex-start
           margin-top: #{$height * (2 - $i)}
       .dot
-        border: 1px solid lighten($color_blue, 20%)
+        border-color: lighten($color_blue, 20%)
         &:nth-child(2) // after
           background-color: $color_blue
           border-color: $color_blue
-  .dot
-    margin: -7px 0
-  span
-    margin: 0 10px
-    display: flex
-    align-items: center
-    flex-wrap: nowrap
 </style>
 
 <script>
