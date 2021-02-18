@@ -1,8 +1,10 @@
 <template lang="pug">
 .transformGraph
-  .group(v-for="i in [2, 1, 0, -1, -2]")
+  .group(
+    v-for="i in [2, 1, 0, -1, -2]"
+    v-if="groupedData[i]"
+  )
     .unit(
-      v-if="groupedData[i]"
       v-for="t in groupedData[i]"
       :data-before="t.before"
       :data-after="t.after"
