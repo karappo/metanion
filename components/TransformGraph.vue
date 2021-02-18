@@ -1,16 +1,17 @@
 <template lang="pug">
 .transformGraph
-  .unit(
-    v-for="t in data"
-    v-if="t.difference !== 0"
-    :data-before="t.before"
-    :data-after="t.after"
-    :data-difference="t.difference"
-  )
-    .line
-    .dots
-      .dot
-      .dot
+  .group(v-for="i in [2, 1, 0, -1, -2]")
+    .unit(
+      v-if="groupedData[i]"
+      v-for="t in groupedData[i]"
+      :data-before="t.before"
+      :data-after="t.after"
+      :data-difference="t.difference"
+    )
+      .line
+      .dots
+        .dot
+        .dot
 </template>
 
 <style lang="sass">
@@ -19,13 +20,16 @@
   $height: 102.5px
 
   display: flex
-  align-items: flex-end
-  justify-content: space-around
-  width: 700px
+  justify-content: space-between
+  width: 672px
   height: 410px
   background-image: url(~assets/image/transform-background.svg)
   background-repeat: no-repeat
   background-position: center
+  .group
+    display: flex
+    align-items: flex-end
+    height: 100%
   .unit
     position: relative
     width: 12px
@@ -54,6 +58,8 @@
         margin: -6px 0
         &:nth-child(1) // before
           background-color: white
+  .unit + .unit
+    margin-left: 3px
   @for $i from 1 to 4
     .unit[data-difference='#{$i}']
       height: #{$height * $i}
@@ -86,11 +92,18 @@
 </style>
 
 <script>
+import _groupBy from 'lodash/groupBy'
 export default {
   props: {
     data: {
       default: null,
       type: Array
+    }
+  },
+  computed: {
+    groupedData() {
+      const _data = this.data.filter((t) => t.difference !== 0) // 不要なデータ削除
+      return _groupBy(_data, 'after') // 終着点でグルーピング
     }
   }
 }

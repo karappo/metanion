@@ -97,6 +97,7 @@ h1
     display: flex
     flex-direction: column
     justify-content: flex-end
+    margin: 0 14px
   .dots
     .dot
       width: 12px
