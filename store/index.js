@@ -2,7 +2,6 @@ import _find from 'lodash/find'
 import _keys from 'lodash/keys'
 import _take from 'lodash/take'
 import _tail from 'lodash/tail'
-import _sortBy from 'lodash/sortBy'
 
 export const state = () => ({
   gss: null,
@@ -88,7 +87,6 @@ export const mutations = {
       })
 
     answers = groupBySentence(answers)
-
     for (const index in answers) {
       const _answers = answers[index]
       // Cleanup: 大量にNaNが含まれているのでここで除去
@@ -107,10 +105,6 @@ export const mutations = {
           difference: _answers.after[i] - v
         })
       })
-      console.log('----------------------------------')
-      console.log(JSON.stringify(_answers.transform))
-      _answers.transform = _sortBy(_answers.transform, ['after']).reverse()
-      console.log(JSON.stringify(_answers.transform))
 
       // 前後の結果に表示する単純なカウントを保持
       _answers.count = {
