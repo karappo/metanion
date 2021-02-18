@@ -95,6 +95,7 @@
 
 <script>
 import _groupBy from 'lodash/groupBy'
+import _sortBy from 'lodash/sortBy'
 export default {
   props: {
     data: {
@@ -104,8 +105,13 @@ export default {
   },
   computed: {
     groupedData() {
-      const _data = this.data.filter((t) => t.difference !== 0) // 不要データの削除
-      return _groupBy(_data, 'after') // 終着点でグルーピング
+      let _data = this.data.filter((t) => t.difference !== 0) // 不要データの削除
+      _data = _groupBy(_data, 'after') // 終着点でグルーピング
+      // 変化の方向で並び替え（賛成方向→反対方向）
+      for (const key in _data) {
+        _data[key] = _sortBy(_data[key], 'difference').reverse()
+      }
+      return _data
     }
   }
 }
