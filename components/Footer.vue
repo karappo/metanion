@@ -16,7 +16,7 @@ footer
     a.toggleButton(@click="$emit('toggleShowTransform')")
       IconClose(v-if="showTransform")
       IconOpen(v-else)
-    ExternalLink.gssLink(v-if="sheet()" :href="gssLinkURI()" targe='_blank') {{ sheet().properties.title }}
+    ExternalLink.gssLink(v-if="sheet" :href="gssLinkURI" targe='_blank') {{ sheet.properties.title }}
 </template>
 
 <style lang="sass">
@@ -119,16 +119,16 @@ export default {
       type: Boolean
     }
   },
-  methods: {
+  computed: {
+    gssLinkURI() {
+      return `${this.$const.spreadsheetURI}#gid=${this.$store.state.sheetId}`
+    },
     sheet() {
       return this.$store.state.gss
         ? _find(this.$store.state.gss.sheets, {
             properties: { sheetId: this.$store.state.sheetId * 1 }
           })
         : null
-    },
-    gssLinkURI() {
-      return `${this.$const.spreadsheetURI}#gid=${this.$store.state.sheetId}`
     }
   }
 }

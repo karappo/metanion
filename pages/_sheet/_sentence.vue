@@ -2,7 +2,7 @@
 .wrap
   .content
     h1 文章{{ $route.params.sentence }}
-    p.question {{ questionText() }}
+    p.question {{ questionText }}
     .graph(v-if="answers")
       .before
         .dots
@@ -120,27 +120,9 @@ export default {
     }
   },
   computed: {
-    sentenceIndex() {
-      return this.$route.params.sentence - 1
-    },
     answers() {
       return this.$store.state.answers
         ? this.$store.state.answers[this.sentenceIndex]
-        : null
-    }
-  },
-  mounted() {
-    this.$store.commit('sheetId', this.$route.params.sheet)
-  },
-  methods: {
-    toggleShowTransform() {
-      this.showTransform = !this.showTransform
-    },
-    sheet() {
-      return this.$store.state.gss
-        ? _find(this.$store.state.gss.sheets, {
-            properties: { sheetId: this.$store.state.sheetId * 1 }
-          })
         : null
     },
     questionText() {
@@ -151,6 +133,24 @@ export default {
             .replace(/^[0-9]+\./, '') // 先頭の 1. を削除
             .trim()
         : null
+    },
+    sentenceIndex() {
+      return this.$route.params.sentence - 1
+    },
+    sheet() {
+      return this.$store.state.gss
+        ? _find(this.$store.state.gss.sheets, {
+            properties: { sheetId: this.$store.state.sheetId * 1 }
+          })
+        : null
+    }
+  },
+  mounted() {
+    this.$store.commit('sheetId', this.$route.params.sheet)
+  },
+  methods: {
+    toggleShowTransform() {
+      this.showTransform = !this.showTransform
     }
   }
 }
