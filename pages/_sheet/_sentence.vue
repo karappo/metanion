@@ -5,9 +5,7 @@
     p.question {{ questionText }}
     .graph(v-if="answers")
       .before
-        .dots
-          .row(v-for="p in points")
-            .dot(v-for="i in (answers.count.before[p] || 0)")
+        Dots(:data="answers.count.before")
       .center
         template(v-if="showTransform")
           PointAxis
@@ -18,9 +16,7 @@
         template(v-else)
           PointAxis
       .after
-        .dots
-          .row(v-for="p in points")
-            .dot(v-for="i in (answers.count.after[p] || 0)")
+        Dots(:data="answers.count.after")
   Footer(:showTransform="showTransform" @toggleShowTransform="toggleShowTransform")
 </template>
 
