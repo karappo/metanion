@@ -90,7 +90,7 @@ export default {
   props: {
     data: {
       default: null,
-      type: Object
+      type: Array
     }
   }
 }
