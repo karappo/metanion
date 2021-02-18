@@ -104,8 +104,7 @@ export default {
   },
   computed: {
     groupedData() {
-      let _data = this.data.filter((t) => t.difference !== 0) // 不要データの削除
-      _data = _groupBy(_data, 'after') // 終着点でグルーピング
+      const _data = _groupBy(this.data, 'after') // 終着点でグルーピング
       // 変化の方向で並び替え（賛成方向→反対方向）
       for (const key in _data) {
         _data[key] = _sortBy(_data[key], 'difference').reverse()

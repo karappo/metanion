@@ -122,12 +122,15 @@ export const mutations = {
       // 意見の変化（transform）のデータ化
       _answers.transform = []
       _answers.before.forEach((v, i) => {
-        _answers.transform.push({
-          index: i,
-          before: v,
-          after: _answers.after[i],
-          difference: _answers.after[i] - v
-        })
+        const difference = _answers.after[i] - v
+        if (difference !== 0) {
+          _answers.transform.push({
+            index: i,
+            before: v,
+            after: _answers.after[i],
+            difference
+          })
+        }
       })
 
       // 前後の結果に表示する単純なカウントを３色分に分けて保持
