@@ -15,7 +15,6 @@ export const state = () => ({
 const groupBySentence = (data) => {
   const res = []
   _keys(data[0].before).forEach((sentenceKey, index) => {
-    console.log(sentenceKey)
     const before = data.map((a) => {
       return a.before[sentenceKey]
     })
@@ -89,7 +88,7 @@ export const mutations = {
       })
 
     answers = groupBySentence(answers)
-    console.log(answers)
+
     for (const index in answers) {
       const _answers = answers[index]
       // Cleanup: 大量にNaNが含まれているのでここで除去
