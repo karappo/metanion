@@ -194,6 +194,7 @@ footer
 
   height: $footer_inner_height
   border-top: 1px solid #CCCCCC
+  background: white
   margin: 0
   display: flex
   .left
