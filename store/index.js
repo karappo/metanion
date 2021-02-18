@@ -40,6 +40,31 @@ const toCountDict = function (obj) {
   }
   return dict
 }
+// 変化の方向でグルーピング
+const groupByTransformation = (data, transformData = null) => {
+  const result = {}
+  if (transformData) {
+    for (const key in data) {
+      const _data = transformData.filter((o) => o.after === key * 1)
+      const plus = _data.filter((o) => 0 < o.difference).length
+      const minus = _data.filter((o) => o.difference < 0).length
+      result[key] = {
+        total: data[key],
+        plus,
+        minus
+      }
+    }
+  } else {
+    for (const key in data) {
+      result[key] = {
+        total: data[key],
+        plus: 0,
+        minus: 0
+      }
+    }
+  }
+  return result
+}
 
 export const mutations = {
   gss(state, val) {
@@ -105,10 +130,13 @@ export const mutations = {
         })
       })
 
-      // 前後の結果に表示する単純なカウントを保持
+      // 前後の結果に表示する単純なカウントを３色分に分けて保持
       _answers.count = {
-        before: toCountDict(_answers.before),
-        after: toCountDict(_answers.after)
+        before: groupByTransformation(toCountDict(_answers.before)),
+        after: groupByTransformation(
+          toCountDict(_answers.after),
+          _answers.transform
+        )
       }
     }
     // Update

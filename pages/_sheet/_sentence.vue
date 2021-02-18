@@ -16,7 +16,7 @@
         template(v-else)
           PointAxis
       .after
-        Dots(:data="answers.count.after")
+        Dots(:data="answers.count.after" :transform="answers.transform")
   Footer(:showTransform="showTransform" @toggleShowTransform="toggleShowTransform")
 </template>
 
@@ -94,13 +94,6 @@ h1
     flex-direction: column
     justify-content: flex-end
     margin: 0 14px
-  .dots
-    .dot
-      width: 12px
-      height: 12px
-      border-radius: 100%
-      margin: 3px
-      background-color: #999999
 </style>
 
 <script>
