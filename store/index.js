@@ -89,14 +89,13 @@ export const mutations = {
     answers = groupBySentence(answers)
     for (const index in answers) {
       const _answers = answers[index]
+
       // Cleanup: 大量にNaNが含まれているのでここで除去
       _answers.before = _answers.before.filter((x) => Number.isInteger(x))
       _answers.after = _answers.after.filter((x) => Number.isInteger(x))
 
-      // Create transform
+      // 意見の変化（transform）のデータ化
       _answers.transform = []
-      // const _after = JSON.parse(JSON.stringify(_answers.after))
-      // console.log(_after)
       _answers.before.forEach((v, i) => {
         _answers.transform.push({
           index: i,
