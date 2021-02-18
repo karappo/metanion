@@ -83,9 +83,8 @@
       .line
         background: linear-gradient(lighten($color_blue, 50%), lighten($color_blue, 10%))
       @for $i from -2 to 2
-        &[data-before='#{$i}']
-          align-self: flex-start
-          margin-top: #{$height * (2 - $i)}
+        &[data-after='#{$i}']
+          margin-bottom: #{$height * ($i + 2)}
       .dot
         border-color: lighten($color_blue, 20%)
         &:nth-child(2) // after
