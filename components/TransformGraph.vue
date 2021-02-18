@@ -88,7 +88,10 @@
 <script>
 export default {
   props: {
-    data: null
+    data: {
+      default: null,
+      type: Object
+    }
   }
 }
 </script>
