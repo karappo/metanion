@@ -104,7 +104,7 @@ export default {
   },
   computed: {
     groupedData() {
-      const _data = this.data.filter((t) => t.difference !== 0) // 不要なデータ削除
+      const _data = this.data.filter((t) => t.difference !== 0) // 不要データの削除
       return _groupBy(_data, 'after') // 終着点でグルーピング
     }
   }
