@@ -13,13 +13,19 @@ footer
       )
         span {{ i + 1 }}
   .right
-    a.toggleButton(@click="$emit('toggleShowTransform')")
-      IconClose(v-if="showTransform")
-      IconOpen(v-else)
+    .rest
+      a.toggleButton(@click="$emit('toggleShowTransform')")
+        IconClose(v-if="showTransform")
+        IconOpen(v-else)
     ExternalLink.gssLink(v-if="sheet" :href="gssLinkURI" targe='_blank') {{ sheet.properties.title }}
 </template>
 
 <style lang="sass">
+a
+  transition: opacity 0.2s
+  &:hover
+    transition: opacity 0.2s
+    opacity: 0.5
 footer
   height: 69px
   border-top: 1px solid #CCCCCC
@@ -34,6 +40,7 @@ footer
     .logotype
       display: flex
       align-items: center
+      height: 100%
   .center
     display: flex
     align-items: center
@@ -44,9 +51,11 @@ footer
     .pages
       display: flex
       align-items: center
+      height: 100%
       a
         display: flex
         align-items: center
+        height: 100%
         &::before,
         &::after
           top: calc(50% - 6px)
@@ -80,22 +89,27 @@ footer
     align-items: center
     margin-right: 56px
     width: 100%
-    .toggleButton
+    .rest
       display: flex
       align-items: center
       justify-content: center
-      width: 100%
       height: 100%
-      cursor: pointer
-      margin: 0 auto
       flex-grow: 1
+      .toggleButton
+        display: flex
+        align-items: center
+        justify-content: center
+        height: 100%
+        width: 69px
+        cursor: pointer
     .gssLink
+      height: 100%
+      flex-grow: 0
       display: flex
       align-items: center
       font-size: 16px
       justify-content: flex-end
       width: auto
-      flex-grow: 3
       text-overflow: ellipsis
       white-space: nowrap
 </style>
