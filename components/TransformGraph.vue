@@ -66,7 +66,7 @@
     .unit[data-difference='#{$i}']
       height: #{$height * $i}
       .line
-        background: linear-gradient(lighten($color_pink, 10%), lighten($color_pink, 50%))
+        background: linear-gradient(lighten($color_pink, 20%), lighten($color_pink, 50%))
       @for $i from -2 to 2
         &[data-before='#{$i}']
           margin-bottom: #{$height * ($i + 2)}
@@ -81,7 +81,7 @@
     .unit[data-difference='-#{$i}']
       height: #{$height * $i}
       .line
-        background: linear-gradient(lighten($color_blue, 50%), lighten($color_blue, 10%))
+        background: linear-gradient(lighten($color_blue, 50%), lighten($color_blue, 20%))
       @for $i from -2 to 2
         &[data-after='#{$i}']
           margin-bottom: #{$height * ($i + 2)}
