@@ -16,13 +16,13 @@
 <style lang="sass">
 @import ~assets/style/const
 .transformGraph
-  $height: 102px
+  $height: 102.5px
 
   display: flex
   align-items: flex-end
   justify-content: space-around
   width: 700px
-  height: #{$height * 4 + 2px} // 画像が切れないように+2pxしている
+  height: 410px
   background-image: url(~assets/image/transform-background.svg)
   background-repeat: no-repeat
   background-position: center
@@ -51,7 +51,7 @@
         justify-content: center
         align-items: center
         font-size: 9px
-        margin: -7px 0
+        margin: -6px 0
         &:nth-child(1) // before
           background-color: white
   @for $i from 1 to 4

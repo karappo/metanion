@@ -1,9 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="672" height="410" viewBox="0 0 672 410">
-  <g id="グループ_208" data-name="グループ 208" transform="translate(-14585 -2330)">
-    <path id="パス_252" data-name="パス 252" d="M630.266,1463h672" transform="translate(13954.734 970)" fill="none" stroke="#ccc" stroke-width="2"/>
-    <path id="パス_253" data-name="パス 253" d="M630.266,1463h672" transform="translate(13954.734 868)" fill="none" stroke="#ccc" stroke-width="2"/>
-    <path id="パス_254" data-name="パス 254" d="M630.266,1463h672" transform="translate(13954.734 1072)" fill="none" stroke="#ccc" stroke-width="2"/>
-    <path id="パス_255" data-name="パス 255" d="M630.266,1463h672" transform="translate(13954.734 1174)" fill="none" stroke="#ccc" stroke-width="2"/>
-    <path id="パス_256" data-name="パス 256" d="M630.266,1463h672" transform="translate(13954.734 1276)" fill="none" stroke="#ccc" stroke-width="2"/>
+  <g id="グループ_208" data-name="グループ 208" transform="translate(-15411 -2321)">
+    <rect id="長方形_141" data-name="長方形 141" width="672" height="2" transform="translate(15411 2321)" fill="#ccc"/>
+    <rect id="長方形_142" data-name="長方形 142" width="672" height="2" transform="translate(15411 2423)" fill="#ccc"/>
+    <rect id="長方形_144" data-name="長方形 144" width="672" height="2" transform="translate(15411 2525)" fill="#ccc"/>
+    <rect id="長方形_146" data-name="長方形 146" width="672" height="2" transform="translate(15411 2627)" fill="#ccc"/>
+    <rect id="長方形_148" data-name="長方形 148" width="672" height="2" transform="translate(15411 2729)" fill="#ccc"/>
+    <rect id="長方形_143" data-name="長方形 143" width="672" height="100" transform="translate(15411 2323)" fill="rgba(255,255,255,0)"/>
+    <rect id="長方形_145" data-name="長方形 145" width="672" height="100" transform="translate(15411 2425)" fill="rgba(255,255,255,0)"/>
+    <rect id="長方形_147" data-name="長方形 147" width="672" height="100" transform="translate(15411 2527)" fill="rgba(255,255,255,0)"/>
+    <rect id="長方形_149" data-name="長方形 149" width="672" height="100" transform="translate(15411 2629)" fill="rgba(255,255,255,0)"/>
   </g>
 </svg>
