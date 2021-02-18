@@ -1,6 +1,6 @@
 <template lang="pug">
 .dots
-  .row(v-for="p in ['2', '1', '0', '-1', '-2']")
+  .row(v-for="p in ['2', '1', '0', '-1', '-2']" :title="data[p] ? data[p].total : '不明'")
     .dot(v-for="i in (data[p] ? data[p].total - data[p].plus - data[p].minus : 0)")
     .dot.plus(v-for="i in (data[p] ? data[p].plus : 0)")
     .dot.minus(v-for="i in (data[p] ? data[p].minus : 0)")
