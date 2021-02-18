@@ -23,9 +23,11 @@ footer
 <style lang="sass">
 a
   transition: opacity 0.2s
-  &:hover
+  &:not(.current):hover
     transition: opacity 0.2s
-    opacity: 0.5
+    opacity: 0.7
+  &.current
+    cursor: default
 footer
   height: 69px
   border-top: 1px solid #CCCCCC
