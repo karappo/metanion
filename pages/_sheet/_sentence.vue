@@ -11,7 +11,10 @@
           PointAxis
           .transform
             TransformGraph(:data="answers.transform")
-            TransformInfo
+            TransformInfo(
+              :total="answers.before.length"
+              :transformCount="answers.transform.length"
+            )
           PointAxis
         template(v-else)
           PointAxis
