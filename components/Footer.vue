@@ -21,9 +21,7 @@ footer
 
 <style lang="sass">
 footer
-  $inner_height: 69px
-
-  height: $inner_height
+  height: 69px
   border-top: 1px solid #CCCCCC
   background: white
   margin: 0
@@ -87,7 +85,7 @@ footer
       align-items: center
       justify-content: center
       width: 100%
-      min-width: $inner_height
+      height: 100%
       cursor: pointer
       margin: 0 auto
       flex-grow: 1
