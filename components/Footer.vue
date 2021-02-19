@@ -21,6 +21,7 @@ footer
 </template>
 
 <style lang="sass">
+@import ~assets/style/const
 a
   transition: opacity 0.2s
   &:not(.current):hover
@@ -79,6 +80,7 @@ footer
           align-items: center
           width: 82px
           height: 24px
+          @extend %helvetica_m
         &.current
           z-index: 1
           span
