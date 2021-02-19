@@ -195,7 +195,6 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      console.log('hide!')
       this.hideNav()
     }, 1000)
   },
