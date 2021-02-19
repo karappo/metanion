@@ -101,7 +101,6 @@
     flex-grow: 3
     padding-left: 20px
     .label
-      margin-right: 10px
       span
         margin-left: 7px
       .big
@@ -128,6 +127,10 @@
       @extend %helvetica_l
       font-size: 24px
       color: #333333
+  .label + .unit
+    margin-left: 10px
+  .unit + .unit
+    margin-left: 5px
 </style>
 
 <script>
