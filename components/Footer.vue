@@ -187,7 +187,6 @@ export default {
       this.navVisibility = true
     },
     hide() {
-      console.log('hide')
       this.navVisibility = false
     }
   }
