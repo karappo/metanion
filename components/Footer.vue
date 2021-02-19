@@ -17,8 +17,8 @@ footer(@mouseover="show()" @mouseleave="hide()")
             span {{ i + 1 }}
       .right
         .rest
-          a.toggleButton(@click="$emit('toggleShowTransform')")
-            IconClose(v-if="showTransform")
+          a.toggleButton(@click="$emit('toggleTransformVisibility')")
+            IconClose(v-if="transformVisibility")
             IconOpen(v-else)
         ExternalLink.gssLink(v-if="sheet" :href="gssLinkURI" targe='_blank') {{ sheet.properties.title }}
 </template>
@@ -160,7 +160,7 @@ export default {
     Logotype
   },
   props: {
-    showTransform: {
+    transformVisibility: {
       default: false,
       type: Boolean
     }

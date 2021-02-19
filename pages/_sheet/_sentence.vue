@@ -7,7 +7,7 @@
       .before
         Dots(:data="answers.count.before" :reverse="true")
       .center
-        template(v-if="showTransform")
+        template(v-if="transformVisibility")
           PointAxis
           .transform
             TransformGraph(:data="answers.transform")
@@ -28,7 +28,7 @@
           PointAxis
       .after
         Dots(:data="answers.count.after" :transform="answers.transform")
-  Footer(:showTransform="showTransform" @toggleShowTransform="toggleShowTransform")
+  Footer(:transformVisibility="transformVisibility" @toggleTransformVisibility="transformVisibility = !transformVisibility")
 </template>
 
 <style lang="sass" scoped>
@@ -106,7 +106,7 @@ export default {
   },
   data() {
     return {
-      showTransform: true,
+      transformVisibility: true,
       points: ['2', '1', '0', '-1', '-2']
     }
   },
@@ -138,11 +138,6 @@ export default {
   },
   mounted() {
     this.$store.commit('sheetId', this.$route.params.sheet)
-  },
-  methods: {
-    toggleShowTransform() {
-      this.showTransform = !this.showTransform
-    }
   }
 }
 </script>
