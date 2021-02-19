@@ -1,5 +1,10 @@
 <template lang="pug">
-footer(@mouseover="show()" @mouseleave="hide()")
+footer(
+  @mouseover="showNav"
+  @mouseleave="hideNav"
+  @click="showNav"
+  v-click-outside="hideNav"
+)
   .title(v-if="sheet") {{ sheet.properties.title }}
   transition(name='slide')
     nav(v-if="navVisibility")
@@ -148,6 +153,7 @@ footer
 
 <script>
 import _find from 'lodash/find'
+import ClickOutside from 'vue-click-outside'
 import { ExternalLink } from '@karappo-inc/vue-components'
 import IconClose from '~/assets/image/close.svg?inline'
 import IconOpen from '~/assets/image/open.svg?inline'
@@ -158,6 +164,9 @@ export default {
     IconClose,
     IconOpen,
     Logotype
+  },
+  directives: {
+    ClickOutside
   },
   props: {
     transformVisibility: {
@@ -183,10 +192,10 @@ export default {
     }
   },
   methods: {
-    show() {
+    showNav() {
       this.navVisibility = true
     },
-    hide() {
+    hideNav() {
       this.navVisibility = false
     }
   }
