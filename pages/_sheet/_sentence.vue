@@ -5,7 +5,7 @@
     p.question {{ questionText }}
     .graph(v-if="answers")
       .before
-        Dots(:data="answers.count.before" reverse="true")
+        Dots(:data="answers.count.before" :reverse="true")
       .center
         template(v-if="showTransform")
           PointAxis
