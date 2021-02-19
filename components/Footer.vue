@@ -2,7 +2,7 @@
 footer(@mouseover="show()" @mouseleave="hide()")
   .title(v-if="sheet") {{ sheet.properties.title }}
   transition(name='slide')
-    nav(v-if="showNav")
+    nav(v-if="navVisibility")
       .left
         nuxt-link(to="/").logotype
           Logotype
@@ -167,7 +167,7 @@ export default {
   },
   data() {
     return {
-      showNav: false
+      navVisibility: false
     }
   },
   computed: {
@@ -184,11 +184,11 @@ export default {
   },
   methods: {
     show() {
-      this.showNav = true
+      this.navVisibility = true
     },
     hide() {
       console.log('hide')
-      this.showNav = false
+      this.navVisibility = false
     }
   }
 }
