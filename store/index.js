@@ -71,6 +71,10 @@ export const mutations = {
     state.gss = val
   },
   sheetId(state, val) {
+    if (state.sheetId === val) {
+      return
+    }
+
     state.sheetId = val
 
     // TODO 必ずgssがあるようにしたい
