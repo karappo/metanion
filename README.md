@@ -13,6 +13,9 @@ $ yarn dev
 $ yarn build
 $ yarn start
 
+# If you like to see from other devices on LAN network
+$ nuxt --hostname '192.168.0.106' --port 3000
+
 # generate static project
 $ yarn generate
 ```
