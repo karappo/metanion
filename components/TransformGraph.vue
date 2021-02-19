@@ -8,7 +8,8 @@
       v-for="t in groupedData[i]"
       :data-before="t.before"
       :data-after="t.after"
-      :data-difference="t.difference"
+      :data-difference="t.difference",
+      :class="{ shrinked }"
     )
       .line
       .dots
@@ -35,6 +36,9 @@
   .unit
     position: relative
     width: 12px
+    transition: height 1s ease-in-out
+    &.shrinked
+      height: 0 !important
     .line
       height: 100%
       width: 6px
@@ -80,11 +84,12 @@
   @for $i from 1 to 4
     .unit[data-difference='-#{$i}']
       height: #{$height * $i}
+      align-self: flex-start
       .line
         background: linear-gradient(lighten($color_blue, 50%), lighten($color_blue, 20%))
       @for $i from -2 to 2
-        &[data-after='#{$i}']
-          margin-bottom: #{$height * ($i + 2)}
+        &[data-before='#{$i}']
+          margin-top: #{$height * (2 - $i)}
       .dot
         border-color: lighten($color_blue, 20%)
         &:nth-child(2) // after
@@ -102,6 +107,11 @@ export default {
       type: Array
     }
   },
+  data() {
+    return {
+      shrinked: true
+    }
+  },
   computed: {
     groupedData() {
       const _data = _groupBy(this.data, 'after') // 終着点でグルーピング
@@ -111,6 +121,11 @@ export default {
       }
       return _data
     }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.shrinked = false
+    }, 0)
   }
 }
 </script>
