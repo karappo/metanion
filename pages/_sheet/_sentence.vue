@@ -106,7 +106,7 @@ export default {
   },
   data() {
     return {
-      transformVisibility: true,
+      transformVisibility: false,
       points: ['2', '1', '0', '-1', '-2']
     }
   },
