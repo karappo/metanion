@@ -1,9 +1,9 @@
 <template lang="pug">
 .dots
   .row(v-for="p in ['2', '1', '0', '-1', '-2']" :title="data[p] ? data[p].total : '不明'")
-    .dot(v-for="i in (data[p] ? data[p].total - data[p].plus - data[p].minus : 0)")
-    .dot.plus(v-for="i in (data[p] ? data[p].plus : 0)")
-    .dot.minus(v-for="i in (data[p] ? data[p].minus : 0)")
+    .dot(v-for="i in (data[p] ? data[p].total - data[p].up - data[p].down : 0)")
+    .dot.up(v-for="i in (data[p] ? data[p].up : 0)")
+    .dot.down(v-for="i in (data[p] ? data[p].down : 0)")
 </template>
 
 <style lang="sass">
@@ -15,9 +15,9 @@
     border-radius: 100%
     margin: 3px
     background-color: $color_gray
-    &.plus
+    &.up
       background-color: $color_pink
-    &.minus
+    &.down
       background-color: $color_blue
 </style>
 

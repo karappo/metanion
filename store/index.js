@@ -46,20 +46,20 @@ const groupByTransformation = (data, transformData = null) => {
   if (transformData) {
     for (const key in data) {
       const _data = transformData.filter((o) => o.after === key * 1)
-      const plus = _data.filter((o) => 0 < o.difference).length
-      const minus = _data.filter((o) => o.difference < 0).length
+      const up = _data.filter((o) => 0 < o.difference).length
+      const down = _data.filter((o) => o.difference < 0).length
       result[key] = {
         total: data[key],
-        plus,
-        minus
+        up,
+        down
       }
     }
   } else {
     for (const key in data) {
       result[key] = {
         total: data[key],
-        plus: 0,
-        minus: 0
+        up: 0,
+        down: 0
       }
     }
   }

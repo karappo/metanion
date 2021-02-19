@@ -5,20 +5,45 @@
       .dot.pink
       .dot.blue
       | 移動数
-      span.big {{ transformCount }}
-      span.small /{{ total }}
+      span.big {{ molecular }}
+      span.small /{{ denominator }}
     .down
       | 移動率
-      span.big {{ transformRate }}
+      span.big {{ rate }}
       span.small %
   .right
     .up
-      .dot.pink
-      | 賛成方向に移動
+      .label
+        .dot.pink
+        span 賛成方向に移動
+      .unit
+        img(src="~/assets/image/up1.svg")
+        span {{ up1 }}
+      .unit
+        img(src="~/assets/image/up2.svg")
+        span {{ up2 }}
+      .unit
+        img(src="~/assets/image/up3.svg")
+        span {{ up3 }}
+      .unit
+        img(src="~/assets/image/up4.svg")
+        span {{ up4 }}
     .down
-      .dot.blue
-      | 反対方向に移動
-
+      .label
+        .dot.blue
+        span 反対方向に移動
+      .unit
+        img(src="~/assets/image/down1.svg")
+        span {{ down1 }}
+      .unit
+        img(src="~/assets/image/down2.svg")
+        span {{ down2 }}
+      .unit
+        img(src="~/assets/image/down3.svg")
+        span {{ down3 }}
+      .unit
+        img(src="~/assets/image/down4.svg")
+        span {{ down4 }}
 </template>
 
 <style lang="sass" scoped>
@@ -55,6 +80,11 @@
   display: flex
   align-items: center
   height: 50%
+  .unit
+    >img
+      margin-left: 10px
+    >span
+      margin-left: 10px
 .big
   font-size: 36px
   font-family: helvetica
@@ -64,18 +94,54 @@
 <script>
 export default {
   props: {
-    total: {
+    // 分母（参加者総数）
+    denominator: {
       default: 0,
       type: Number
     },
-    transformCount: {
+    // 分子（移動数）
+    molecular: {
+      default: 0,
+      type: Number
+    },
+    // 賛成の方向に移動
+    up1: {
+      default: 0,
+      type: Number
+    },
+    up2: {
+      default: 0,
+      type: Number
+    },
+    up3: {
+      default: 0,
+      type: Number
+    },
+    up4: {
+      default: 0,
+      type: Number
+    },
+    // 反対の方向に移動
+    down1: {
+      default: 0,
+      type: Number
+    },
+    down2: {
+      default: 0,
+      type: Number
+    },
+    down3: {
+      default: 0,
+      type: Number
+    },
+    down4: {
       default: 0,
       type: Number
     }
   },
   computed: {
-    transformRate() {
-      return Math.round((this.transformCount / this.total) * 100)
+    rate() {
+      return Math.round((this.molecular / this.denominator) * 100)
     }
   }
 }

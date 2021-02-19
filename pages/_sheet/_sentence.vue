@@ -12,8 +12,16 @@
           .transform
             TransformGraph(:data="answers.transform")
             TransformInfo(
-              :total="answers.before.length"
-              :transformCount="answers.transform.length"
+              :denominator="answers.before.length"
+              :molecular="answers.transform.length"
+              :up1="answers.transform.filter((o) => o.difference === 1).length"
+              :up2="answers.transform.filter((o) => o.difference === 2).length"
+              :up3="answers.transform.filter((o) => o.difference === 3).length"
+              :up4="answers.transform.filter((o) => o.difference === 4).length"
+              :down1="answers.transform.filter((o) => o.difference === -1).length"
+              :down2="answers.transform.filter((o) => o.difference === -2).length"
+              :down3="answers.transform.filter((o) => o.difference === -3).length"
+              :down4="answers.transform.filter((o) => o.difference === -4).length"
             )
           PointAxis
         template(v-else)
