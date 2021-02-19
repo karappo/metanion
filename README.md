@@ -4,20 +4,20 @@
 
 ```bash
 # install dependencies
-$ yarn install
+yarn install
 
 # serve with hot reload at localhost:3000
-$ yarn dev
+yarn dev
 
 # build for production and launch server
-$ yarn build
-$ yarn start
+yarn build
+yarn start
 
 # If you like to see from other devices on LAN network
-$ nuxt --hostname '192.168.0.106' --port 3000
+nuxt --hostname '192.168.0.106' --port 3000
 
 # generate static project
-$ yarn generate
+yarn generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
