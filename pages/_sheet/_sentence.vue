@@ -5,7 +5,10 @@
     p.question {{ questionText }}
     .graph(v-if="answers")
       .before
-        Dots(:data="answers.count.before" :reverse="true")
+        h2
+          img(src="~/assets/image/before.svg")
+        .dotsWrap
+          Dots(:data="answers.count.before" :reverse="true")
       .center
         template(v-if="transformVisibility")
           PointAxis
@@ -27,7 +30,10 @@
         template(v-else)
           PointAxis
       .after
-        Dots(:data="answers.count.after" :transform="answers.transform")
+        h2
+          img(src="~/assets/image/after.svg")
+        .dotsWrap
+          Dots.dots(:data="answers.count.after" :transform="answers.transform")
   Footer(:transformVisibility="transformVisibility" @toggleTransformVisibility="transformVisibility = !transformVisibility")
 </template>
 
@@ -62,7 +68,7 @@ h1
 .graph
   color: #999999
   max-width: 1920px
-  width: calc(100% - 60px)
+  width: 100%
   margin: 0 auto
   display: flex
   > *
@@ -70,23 +76,40 @@ h1
     align-items: center
   .before,
   .after
+    display: block
+    position: relative
     width: calc((100% - 70px) / 2)
     max-width: 450px // 18px x 25
+    h2
+      position: absolute
+      top: 10px
+      margin: 0
+    .dotsWrap
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      display: flex
+      align-items: center
   .before
-    justify-content: flex-end
     margin-left: auto
     margin-right: 0
     background-image: url(~assets/image/before-axis.svg)
     background-repeat: no-repeat
-    background-position: right 76px top 15px
-    padding-left: 50px
+    background-position: right 77px top 76px
+    h2
+      left: 4px
+    .dotsWrap
+      justify-content: flex-end
   .after
     margin-left: 0
     margin-right: auto
     background-image: url(~assets/image/after-axis.svg)
     background-repeat: no-repeat
-    background-position: left 78px top 15px
-    padding-right: 50px
+    background-position: left 76px top 76px
+    h2
+      right: 4px
     .row
       margin-right: auto
   .transform
@@ -106,7 +129,7 @@ export default {
   },
   data() {
     return {
-      transformVisibility: false,
+      transformVisibility: true,
       points: ['2', '1', '0', '-1', '-2']
     }
   },
