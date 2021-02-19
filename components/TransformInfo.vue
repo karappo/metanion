@@ -1,18 +1,18 @@
 <template lang="pug">
 .transformInfo
-  .left
-    .up
+  .col
+    .row
       .dot.pink
       .dot.blue
       | 移動数
       span.big {{ molecular }}
       span.small /{{ denominator }}
-    .down
+    .row
       | 移動率
       span.big {{ rate }}
       span.small %
-  .right
-    .up
+  .col
+    .row
       .label
         .dot.pink
         span 賛成方向に移動
@@ -28,7 +28,7 @@
       .unit
         img(src="~/assets/image/up4.svg")
         span {{ up4 }}
-    .down
+    .row
       .label
         .dot.blue
         span 反対方向に移動
@@ -47,48 +47,52 @@
 </template>
 
 <style lang="sass" scoped>
+@import ~assets/style/general/const
 @import ~assets/style/const
 .transformInfo
   height: 94px
   padding: 17px 0
   display: flex
   align-items: stretch
-.dot
-  width: 10px
-  height: 10px
-  border-radius: 5px
-  &.pink
-    background-color: $color_pink
-  &.blue
-    background-color: $color_blue
-
-.left,
-.right
-  display: flex
-  align-items: stretch
-  flex-direction: column
-  font-size: 15px
-  color: #808080
-.left
-  width: 215px
-.right
-  background-image: url(~assets/image/dotline-vertical.svg)
-  background-repeat: repeat-y
-  background-position: left top
-.up,
-.down
-  display: flex
-  align-items: center
-  height: 50%
+  .col
+    display: flex
+    align-items: stretch
+    flex-direction: column
+    font-size: 15px
+    color: #808080
+  .col:nth-of-type(1)
+    width: 215px
+  .col:nth-of-type(2)
+    background-image: url(~assets/image/dotline-vertical.svg)
+    background-repeat: repeat-y
+    background-position: left top
+  .row:nth-of-type(1)
+    background: rgba(255,0,0,0.3)
+  .row:nth-of-type(2)
+    background: rgba(0,255,0,0.3)
+  .row
+    display: flex
+    align-items: center
+    height: 50%
   .unit
     >img
       margin-left: 10px
     >span
       margin-left: 10px
-.big
-  font-size: 36px
-  font-family: helvetica
-  font-weight: 400
+      font-size: 24px
+      font-family: $helvetica
+  .dot
+    width: 10px
+    height: 10px
+    border-radius: 5px
+    &.pink
+      background-color: $color_pink
+    &.blue
+      background-color: $color_blue
+  .big
+    font-size: 36px
+    font-family: $helvetica
+    font-weight: 400
 </style>
 
 <script>

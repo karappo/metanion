@@ -5,7 +5,7 @@
     p.question {{ questionText }}
     .graph(v-if="answers")
       .before
-        Dots(:data="answers.count.before")
+        Dots(:data="answers.count.before" reverse="true")
       .center
         template(v-if="showTransform")
           PointAxis
@@ -31,7 +31,7 @@
   Footer(:showTransform="showTransform" @toggleShowTransform="toggleShowTransform")
 </template>
 
-<style lang="sass">
+<style lang="sass" scoped>
 @import ~assets/style/const
 
 .wrap
@@ -80,9 +80,6 @@ h1
     background-repeat: no-repeat
     background-position: right 76px top 15px
     padding-left: 50px
-    .row
-      flex-direction: row-reverse
-      margin-left: auto
   .after
     margin-left: 0
     margin-right: auto
@@ -92,13 +89,6 @@ h1
     padding-right: 50px
     .row
       margin-right: auto
-  .row
-    margin: 54px auto
-    height: 48px
-    display: flex
-    flex-direction: row
-    align-items: center
-    flex-wrap: wrap
   .transform
     height: 100%
     display: flex
