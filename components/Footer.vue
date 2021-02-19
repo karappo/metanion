@@ -1,7 +1,7 @@
 <template lang="pug">
 footer(
-  @mouseover="showNav"
-  @mouseleave="hideNav"
+  @mouseover="mouseover"
+  @mouseleave="mouseleave"
   @click="showNav"
   v-click-outside="hideNav"
 )
@@ -36,6 +36,7 @@ footer(
   transform: translateY(0)
 .slide-enter,
 .slide-leave-active
+  transition: transform 1s
   transform: translateY(70px)
 
 a
@@ -176,7 +177,8 @@ export default {
   },
   data() {
     return {
-      navVisibility: false
+      navVisibility: true,
+      hover: false
     }
   },
   computed: {
@@ -191,12 +193,28 @@ export default {
         : null
     }
   },
+  mounted() {
+    setTimeout(() => {
+      console.log('hide!')
+      this.hideNav()
+    }, 1000)
+  },
   methods: {
+    mouseover() {
+      this.hover = true
+      this.showNav()
+    },
+    mouseleave() {
+      this.hover = false
+      this.hideNav()
+    },
     showNav() {
       this.navVisibility = true
     },
     hideNav() {
-      this.navVisibility = false
+      if (!this.hover) {
+        this.navVisibility = false
+      }
     }
   }
 }
