@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="18.964" height="12" viewBox="0 0 18.964 12">
-  <g id="down1" transform="translate(-13936.092 -2097.151)">
+<svg xmlns="http://www.w3.org/2000/svg" width="18.965" height="12" viewBox="0 0 18.965 12">
+  <g id="down1" transform="translate(-13936.091 -2097.151)">
     <path id="パス_256" data-name="パス 256" d="M1.416-7.088a.914.914,0,0,0,.928.272,1.653,1.653,0,0,0,.7-.512l.936-.936v6.9a1.883,1.883,0,0,0,.136.928.963.963,0,0,0,.9.5.963.963,0,0,0,.9-.5,1.883,1.883,0,0,0,.136-.928V-10.1a1.4,1.4,0,0,0-.3-1.056,1.062,1.062,0,0,0-.768-.3,1.548,1.548,0,0,0-1.12.536L1.656-8.712a1.664,1.664,0,0,0-.512.7A.913.913,0,0,0,1.416-7.088Z" transform="translate(13949 2109)" fill="#00d7ff"/>
-    <g id="arrow" transform="translate(12919 1224)">
+    <g id="arrow" transform="translate(14966 2982.301) rotate(180)">
       <path id="パス_228" data-name="パス 228" d="M11909.577,3941.15v-9.625" transform="translate(-10886.077 -3057)" fill="none" stroke="#00d7ff" stroke-linecap="round" stroke-width="2"/>
       <path id="パス_229" data-name="パス 229" d="M11904.883,3937.15l4.974-6,5.026,6" transform="translate(-10886.383 -3057)" fill="none" stroke="#00d7ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
     </g>
