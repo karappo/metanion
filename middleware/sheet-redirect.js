@@ -3,6 +3,10 @@ export default async function ({ params, redirect, store }) {
     const gss = await fetch(
       `https://sheets.googleapis.com/v4/spreadsheets/${process.env.SPREADSHEET_ID}/?key=${process.env.API_KEY}&includeGridData=true`
     ).then((res) => res.json())
+    // _で始まるシートのデータを削除
+    gss.sheets = gss.sheets.filter((sheet) => {
+      return !sheet.properties.title.startsWith('_')
+    })
     store.commit('gss', gss)
   }
 

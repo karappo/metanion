@@ -5,7 +5,7 @@
   template(v-if="$store.state.gss")
     h3 シートを選択してください
     .sheets
-      nuxt-link.sheetLink(v-for="(sheet, idx) in $store.state.gss.sheets" v-if="!/^_/.test(sheet.properties.title)" :to="`/${sheet.properties.sheetId}/`" :key="idx") {{ sheet.properties.title }}
+      nuxt-link.sheetLink(v-for="(sheet, idx) in $store.state.gss.sheets" :to="`/${sheet.properties.sheetId}/`" :key="idx") {{ sheet.properties.title }}
   template(v-else)
     h3 エラー：表示可能なシートがありません
 </template>
