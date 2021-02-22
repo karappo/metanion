@@ -1,7 +1,7 @@
 <template lang="pug">
 .container
   img(src="~assets/image/logo.png" srcset="~assets/image/logo.png 1x, ~assets/image/logo@2x.png 2x")
-  ExternalLink.help(href="https://docs.google.com/document/d/1wSAPXohNnF5o42wEkVlBjWn9I17vawxKf5gU6_VnKHQ/") 取扱説明書
+  ExternalLink.help(href="https://docs.google.com/document/d/1wSAPXohNnF5o42wEkVlBjWn9I17vawxKf5gU6_VnKHQ/") 管理マニュアル
   template(v-if="$store.state.gss")
     h3 シートを選択してください
     .sheets
@@ -18,8 +18,7 @@
   flex-direction: column
   margin: 30px
 .help
-  font-size: 16px
-  font-weight: bold
+  font-size: 14px
   width: auto
   margin: 18px 0 18px auto
 h3
