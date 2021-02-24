@@ -41,7 +41,7 @@
       height: 0 !important
     .line
       height: 100%
-      width: 6px
+      width: 8px
       margin: 0 auto
     .dots
       position: absolute
