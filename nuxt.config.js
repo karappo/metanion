@@ -57,6 +57,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
+    '@nuxtjs/device',
     '@nuxtjs/dotenv',
     '@nuxtjs/svg',
     '@nuxtjs/pwa'
