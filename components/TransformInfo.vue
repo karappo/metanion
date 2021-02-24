@@ -128,7 +128,7 @@
       font-size: 24px
       color: #333333
   .label + .unit
-    margin-left: 10px
+    margin-left: 20px
   .unit + .unit
     margin-left: 5px
 </style>
