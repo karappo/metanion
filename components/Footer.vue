@@ -205,7 +205,7 @@ export default {
     },
     mouseleave() {
       this.hover = false
-      setTimeout(this.hideNav, 2000) // 一瞬エリア外に出ることもあるので、遅延させる
+      setTimeout(this.hideNav, 3000) // 一瞬エリア外に出ることもあるので、遅延させる
     },
     showNav() {
       this.navVisibility = true
