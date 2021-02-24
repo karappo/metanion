@@ -214,7 +214,6 @@ export default {
       this.navVisibility = true
     },
     hideNav() {
-      console.log(this.$device.isMobileOrTablet)
       if (this.$device.isMobileOrTablet || !this.hover) {
         this.navVisibility = false
       }
