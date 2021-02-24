@@ -78,5 +78,6 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+    cssSourceMap: false // Chrome dev tools でcssを変更したときにレイアウトが崩れてしまわないように TODO: devの時だけfalseにする
   }
 }
