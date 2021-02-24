@@ -99,7 +99,7 @@ h1
     background-repeat: no-repeat
     background-position: right 77px top 76px
     h2
-      left: 4px
+      left: 0
     .dotsWrap
       justify-content: flex-end
   .after
@@ -109,7 +109,7 @@ h1
     background-repeat: no-repeat
     background-position: left 76px top 76px
     h2
-      right: 4px
+      right: 0
     .row
       margin-right: auto
   .transform
