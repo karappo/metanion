@@ -194,9 +194,7 @@ export default {
     }
   },
   mounted() {
-    setTimeout(() => {
-      this.hideNav()
-    }, 1000)
+    setTimeout(this.hideNav, 3000)
   },
   methods: {
     mouseover() {
