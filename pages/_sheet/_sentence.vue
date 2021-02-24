@@ -52,6 +52,7 @@
   display: flex
   flex-direction: column
   justify-content: center
+  margin: 30px 0
 .table
   width: 400px
   margin: 0 auto 30px
