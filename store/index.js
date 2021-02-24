@@ -127,7 +127,7 @@ export const mutations = {
       _answers.transform = []
       _answers.before.forEach((v, i) => {
         const difference = _answers.after[i] - v
-        if (difference !== 0) {
+        if (!isNaN(difference) && difference !== 0) {
           _answers.transform.push({
             index: i,
             before: v,
