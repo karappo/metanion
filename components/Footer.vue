@@ -178,7 +178,8 @@ export default {
   data() {
     return {
       navVisibility: true,
-      hover: false
+      hover: false,
+      autoHideTimer: null // 自動でフッターを隠すタイマー
     }
   },
   computed: {
@@ -194,16 +195,20 @@ export default {
     }
   },
   mounted() {
-    setTimeout(this.hideNav, 3000)
+    this.autoHideTimer = setTimeout(this.hideNav, 3000)
   },
   methods: {
     mouseover() {
       this.hover = true
+      if (this.autoHideTimer) {
+        clearTimeout(this.autoHideTimer)
+        this.autoHideTimer = null
+      }
       this.showNav()
     },
     mouseleave() {
       this.hover = false
-      setTimeout(this.hideNav, 3000) // 一瞬エリア外に出ることもあるので、遅延させる
+      this.autoHideTimer = setTimeout(this.hideNav, 3000) // 一瞬エリア外に出ることもあるので、遅延させる
     },
     showNav() {
       this.navVisibility = true
