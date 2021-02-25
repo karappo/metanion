@@ -64,9 +64,9 @@ h1
 .question
   position: relative
   margin: 15px auto 30px
-  width: 1030px
+  width: 990px
   &.wide
-    width: 1812px
+    width: 1780px
   &:before,
   &:after
     content: ''
@@ -100,7 +100,7 @@ h1
     display: block
     position: relative
     width: calc((100% - 70px) / 2)
-    max-width: 450px // 18px x 25
+    max-width: 452px
     h2
       position: absolute
       top: 10px
