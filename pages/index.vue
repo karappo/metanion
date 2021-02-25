@@ -35,6 +35,7 @@ h3
   font-size: 16px
   &:hover
     background: #E6E6E6
+    opacity: 1
 .sheetLink + .sheetLink
   margin-top: 12px
 </style>
