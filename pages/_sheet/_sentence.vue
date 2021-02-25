@@ -2,7 +2,8 @@
 .wrap
   .content
     h1 文章{{ $route.params.sentence }}
-    p.question {{ questionText }}
+    .question(:class="{wide: transformVisibility}")
+      p {{ questionText }}
     .graph(v-if="answers")
       .before
         h2
@@ -61,11 +62,30 @@ h1
   margin: 0 auto
   font-size: 22px
 .question
-  max-width: 580px
-  margin: 0 auto 45px
-  font-size: 26px
-  line-height: 53px
-  font-weight: bold
+  position: relative
+  margin: 15px auto 30px
+  width: 1030px
+  &.wide
+    width: 1812px
+  &:before,
+  &:after
+    content: ''
+    width: 100%
+    height: 1px
+    background: url(~assets/image/dotline-horizontal.svg)
+    background-repeat: repeat-x
+    position: absolute
+    left: 0
+  &:before
+    top: 0
+  &:after
+    bottom: 0
+  p
+    width: 580px
+    margin: 20px auto
+    font-size: 26px
+    line-height: 49px
+    font-weight: bold
 .graph
   color: #999999
   max-width: 1920px
