@@ -25,14 +25,19 @@
 h3
   font-size: 18px
   margin: 50px 0 20px 0
+.sheets
+  width: 100%
 .sheetLink
   display: block
   color: #666666
   padding: 20px
-  display: flex
+  display: block
   align-items: center
   border: 1px solid #707070
   font-size: 16px
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
   &:hover
     background: #E6E6E6
     opacity: 1

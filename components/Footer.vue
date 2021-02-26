@@ -52,12 +52,18 @@ footer
   position: relative
   overflow: hidden
   .title
-    display: flex
-    justify-content: center
-    align-items: center
-    width: 100%
+    display: block
+    width: calc(100% - 112px)
     height: 100%
     z-index: 1
+    text-align: center
+    font-size: 16px
+    line-height: 16px
+    height: 17px
+    padding: 26px 56px
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
   nav
     position: absolute
     top: 0
@@ -142,14 +148,16 @@ footer
           cursor: pointer
       .gssLink
         height: 100%
-        flex-grow: 0
-        display: flex
-        align-items: center
+        display: block
         font-size: 16px
-        justify-content: flex-end
+        line-height: 16px
+        height: 17px
+        padding: 26px 0
         width: auto
-        text-overflow: ellipsis
+        max-width: 390px
         white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
 </style>
 
 <script>
