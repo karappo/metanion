@@ -13,10 +13,6 @@
 yarn install
 
 # serve with hot reload at localhost:3000
-yarn dev
-
-# build for production and launch server
-yarn build
 yarn start
 
 # If you like to see from other devices on LAN network
