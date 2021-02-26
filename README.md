@@ -15,7 +15,7 @@ yarn install
 # serve with hot reload at localhost:3000
 yarn start
 
-# If you like to see from other devices on LAN network
+# if you like to see from other devices on LAN network
 nuxt --hostname '192.168.0.106' --port 3000
 
 # generate static project
