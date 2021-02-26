@@ -3,6 +3,9 @@
 賛成反対ビジュアライザー METANION
 
 ![スクリーンショット](./_assets/screenshot.png)
+
+表示画面サイズ： 1920 ✕ 1080 px 以上
+
 ## Build Setup
 
 ```bash
