@@ -2,6 +2,7 @@
 
 賛成反対ビジュアライザー METANION
 
+![スクリーンショット](./_assets/screenshot.png)
 ## Build Setup
 
 ```bash
@@ -33,9 +34,3 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
 4. 共有設定 ＞ このリンクを知っているインターネット上の全員が閲覧できます
 
 Ref: https://www.freecodecamp.org/news/cjn-google-sheets-as-json-endpoint/
-
-
-# フォームの作り方
-
-1. [Google Forms](https://docs.google.com/forms/)より、新しいフォームを作成
-2. 「回答」タブより「回答先の選択」から「既存のスプレッドシートを選択」より、[Metanion Answers](https://docs.google.com/spreadsheets/d/1lu3DbgrhnZYCKT7KuwaZB0Y9VnMH-Vwxf-y2BstPLOM/edit#gid=1979632471)を選択
